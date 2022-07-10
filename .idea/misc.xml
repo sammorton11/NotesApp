@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/drawable/custom_back_button.xml" value="0.2465" />
+        <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/drawable/custom_button_back.xml" value="0.388" />
+        <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/drawable/ic_delete.xml" value="0.2655" />
+        <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/activity_add_edit_note.xml" value="0.4893203883495146" />
+        <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/activity_main.xml" value="0.38385416666666666" />
+        <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/note_rv_item.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
