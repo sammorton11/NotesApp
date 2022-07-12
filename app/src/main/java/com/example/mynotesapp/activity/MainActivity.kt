@@ -1,6 +1,5 @@
 package com.example.mynotesapp.activity
 
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -8,7 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mynotesapp.*
+import com.example.mynotesapp.NoteClickDeleteInterface
+import com.example.mynotesapp.NoteClickInterface
+import com.example.mynotesapp.NoteRVAdapter
+import com.example.mynotesapp.R
 import com.example.mynotesapp.data.Note
 import com.example.mynotesapp.viewmodels.NoteViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         }
     }
 
-    fun initializeViewModel(){
+    private fun initializeViewModel(){
         // initializing view modal.
         viewModel = ViewModelProvider(
             this,
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
     private fun openAddNotePage() {
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
         startActivity(intent)
-        this.finish() // app works without this - remove please
+        //this.finish()
     }
 
     private fun openEditNotePage(note: Note){
@@ -73,7 +75,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         intent.putExtra("noteDescription", note.noteDescription)
         intent.putExtra("noteId", note.id)
         startActivity(intent)
-        this.finish()
+        //this.finish()
     }
 
     // using this to update a clicked note.
