@@ -26,13 +26,12 @@ class AddEditNoteActivity : AppCompatActivity() {
     private lateinit var viewModel: NoteViewModel
     private val noteType by lazy { intent.getStringExtra("noteType") } // getting data passed via an intent.
     private var noteID: Int = -1
-    private var mActivity = MainActivity()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
-        mActivity.initializeViewModel()
+        initializeViewModel()
         setupUI()
 
         saveBtn.setOnClickListener {
@@ -42,6 +41,14 @@ class AddEditNoteActivity : AppCompatActivity() {
         cancelButton.setOnClickListener{
             goBackToMainPage()
         }
+    }
+
+    private fun initializeViewModel(){
+        // initializing view modal.
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[NoteViewModel::class.java]
     }
 
     private fun setupUI(){
@@ -59,9 +66,11 @@ class AddEditNoteActivity : AppCompatActivity() {
             saveBtn.text = getString(R.string.update_note)
             noteTitleEdt.setText(noteTitle)
             noteEdt.setText(noteDescription)
+            supportActionBar?.setTitle(getString(R.string.update_note))
 
         } else {
             saveBtn.text = getString(R.string.save_note)
+            supportActionBar?.setTitle(getString(R.string.save_note))
         }
     }
 
