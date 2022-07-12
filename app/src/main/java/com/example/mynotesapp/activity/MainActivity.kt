@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
     private fun openAddNotePage() {
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
         startActivity(intent)
-        //this.finish()
+        this.finish()
     }
 
     private fun openEditNotePage(note: Note){
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         intent.putExtra("noteDescription", note.noteDescription)
         intent.putExtra("noteId", note.id)
         startActivity(intent)
-        //this.finish()
+        this.finish()
     }
 
     // using this to update a clicked note.

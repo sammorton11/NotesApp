@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynotesapp.data.Note
-import com.example.mynotesapp.viewmodels.NoteViewModel
 
 class NoteRVAdapter(
     private val context: Context,
@@ -20,7 +18,6 @@ class NoteRVAdapter(
 ) :
     RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
     private val allNotes = ArrayList<Note>()
-    private lateinit var viewModel: NoteViewModel
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -75,8 +72,8 @@ class NoteRVAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<Note>) {
         allNotes.clear() // clear old list
-        allNotes.addAll(newList)//adding a new list to the all notes list.
-        notifyDataSetChanged() //notify the adapter.
+        allNotes.addAll(newList) // update
+        notifyDataSetChanged()
     }
 
 }
