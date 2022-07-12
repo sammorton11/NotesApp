@@ -6,4 +6,6 @@
     <string name="enter_your_note_details">Enter Note Details…</string>
     <string name="enter_note_title">Title</string>
     <string name="cancel">Cancel</string>
+    <string name="update_note">Update Note</string>
+    <string name="save_note">Save Note</string>
 </resources>

@@ -26,12 +26,13 @@ class AddEditNoteActivity : AppCompatActivity() {
     private lateinit var viewModel: NoteViewModel
     private val noteType by lazy { intent.getStringExtra("noteType") } // getting data passed via an intent.
     private var noteID: Int = -1
+    private var mActivity = MainActivity()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
-        initializeViewModel()
+        mActivity.initializeViewModel()
         setupUI()
 
         saveBtn.setOnClickListener {
@@ -55,20 +56,13 @@ class AddEditNoteActivity : AppCompatActivity() {
             val noteTitle = intent.getStringExtra("noteTitle")
             val noteDescription = intent.getStringExtra("noteDescription")
             noteID = intent.getIntExtra("noteId", -1)
-            saveBtn.text = "Update Note"
+            saveBtn.text = getString(R.string.update_note)
             noteTitleEdt.setText(noteTitle)
             noteEdt.setText(noteDescription)
-        } else {
-            saveBtn.text = "Save Note"
-        }
-    }
 
-    private fun initializeViewModel(){
-        // initializing view modal.
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[NoteViewModel::class.java]
+        } else {
+            saveBtn.text = getString(R.string.save_note)
+        }
     }
 
     private fun goBackToMainPage(){
@@ -80,14 +74,13 @@ class AddEditNoteActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     private fun saveData(){
-        // on below line we are getting
-        // title and desc from edit text.
+
+        // title and description from edit text.
         val noteTitle = noteTitleEdt.text.toString()
         val noteDescription = noteEdt.text.toString()
-        // on below line we are checking the type
-        // and then saving or updating the data.
 
-        //updating note
+        //Check the noteType
+        //edit note
         if (noteType.equals("Edit")) {
             if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
                 val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
@@ -95,9 +88,10 @@ class AddEditNoteActivity : AppCompatActivity() {
                 val updatedNote = Note(noteTitle, noteDescription, currentDateAndTime)
                 updatedNote.id = noteID
                 viewModel.updateNote(updatedNote)
-                Toast.makeText(this, "$noteTitle : Note Updated..", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Note Updated: $noteTitle", Toast.LENGTH_LONG).show()
             }
-        //adding new note
+
+        //add new note
         } else {
             if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
                 val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
@@ -106,9 +100,10 @@ class AddEditNoteActivity : AppCompatActivity() {
                 viewModel.addNote(Note(noteTitle, noteDescription, currentDateAndTime))
                 Toast.makeText(this, "$noteTitle Added", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Nothing added", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Nothing added - Please add a title and description", Toast.LENGTH_LONG).show()
             }
         }
+
         // opening the main page
         goBackToMainPage()
         this.finish()
