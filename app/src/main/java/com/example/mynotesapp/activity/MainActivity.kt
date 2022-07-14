@@ -64,23 +64,19 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
     private fun openAddNotePage() {
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
         startActivity(intent)
-        this.finish()
     }
 
     private fun openEditNotePage(note: Note){
-        // opening a new intent for the AddEditNoteActivity and passing data to it to update the UI for the edit note page
+        // opening a new intent for the AddEditNoteActivity
+        // and passing data to it to update the UI for the EDIT note page
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
         intent.putExtra("noteType", "Edit")
         intent.putExtra("noteTitle", note.noteTitle)
         intent.putExtra("noteDescription", note.noteDescription)
         intent.putExtra("noteId", note.id)
         startActivity(intent)
-        this.finish()
     }
 
-    // using this to update a clicked note.
-    // when a note is clicked the edit note data is displayed, instead of the add note data.
-    // without this you would only be able to add a new note and not edit the clicked note.
     override fun onNoteClick(note: Note) {
         openEditNotePage(note)
     }
