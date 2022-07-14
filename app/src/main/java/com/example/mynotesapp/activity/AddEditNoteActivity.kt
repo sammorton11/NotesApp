@@ -24,7 +24,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     private lateinit var saveBtn: Button
     private lateinit var cancelButton: Button
     private lateinit var viewModel: NoteViewModel
-    private val noteType by lazy { intent.getStringExtra("noteType") } // getting data passed via an intent.
+    private val noteType by lazy { intent.getStringExtra("noteType") } // getting note type data passed via an intent.
     private var noteID: Int = -1
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -53,9 +53,9 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     private fun setupUI(){
 
-        noteTitleEdt = findViewById(R.id.idEdtNoteName)
-        noteEdt = findViewById(R.id.idEdtNoteDesc)
-        saveBtn = findViewById(R.id.idBtn)
+        noteTitleEdt = findViewById(R.id.idEdtNoteName) // edit text for the title
+        noteEdt = findViewById(R.id.idEdtNoteDesc) // edit text for the note description
+        saveBtn = findViewById(R.id.idBtn) // save button
         cancelButton = findViewById(R.id.idCancelButton)
 
         if (noteType.equals("Edit")) {
@@ -76,6 +76,7 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     private fun goBackToMainPage(){
         startActivity(Intent(applicationContext, MainActivity::class.java))
+        this.finish()
     }
 
 
@@ -88,7 +89,6 @@ class AddEditNoteActivity : AppCompatActivity() {
         val noteTitle = noteTitleEdt.text.toString()
         val noteDescription = noteEdt.text.toString()
 
-        //Check the noteType
         //edit note
         if (noteType.equals("Edit")) {
             if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
