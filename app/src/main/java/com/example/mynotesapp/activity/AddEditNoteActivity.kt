@@ -83,13 +83,11 @@ class AddEditNoteActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     private fun saveData(){
-
         // title and description from edit text.
         val noteTitle = noteTitleEdt.text.toString()
         val noteDescription = noteEdt.text.toString()
-
         //Check the noteType
-        //edit note
+        //edit and update note
         if (noteType.equals("Edit")) {
             if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
                 val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
