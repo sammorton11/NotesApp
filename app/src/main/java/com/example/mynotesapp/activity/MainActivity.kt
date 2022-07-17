@@ -67,8 +67,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
     }
 
     private fun openEditNotePage(note: Note){
-        // opening a new intent for the AddEditNoteActivity
-        // and passing data to it to update the UI for the EDIT note page
+
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
         intent.putExtra("noteType", "Edit")
         intent.putExtra("noteTitle", note.noteTitle)

@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynotesapp.data.Note
-import com.example.mynotesapp.viewmodels.NoteViewModel
 
 class NoteRVAdapter(
     private val context: Context,
@@ -20,7 +18,6 @@ class NoteRVAdapter(
 ) :
     RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
     private val allNotes = ArrayList<Note>()
-    private lateinit var viewModel: NoteViewModel
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -45,21 +42,8 @@ class NoteRVAdapter(
         holder.dateTV.text = "Date and Time : " + allNotes[position].timeStamp
 
         holder.deleteIV.setOnClickListener {
-
             //Alert when delete button is pressed
-            val dialogBuilder = AlertDialog.Builder(context)
-            dialogBuilder.setMessage("Are you sure you want to delete this note?")
-                .setCancelable(false)
-                .setPositiveButton("Delete") { _, _ ->
-                    noteClickDeleteInterface.onDeleteIconClick(allNotes[position]) // delete note
-                }
-                .setNegativeButton("Cancel") { dialog, _ ->
-                    dialog.cancel()
-                }
-            val alert = dialogBuilder.create()
-            alert.setTitle("Delete this note?")
-            alert.show()
-
+            deleteNoteAlertDialog(position)
         }
 
         // click listener for recycler view item at certain index
@@ -79,7 +63,25 @@ class NoteRVAdapter(
         notifyDataSetChanged() //notify the adapter.
     }
 
+
+    //Alert when delete button is pressed
+    private fun deleteNoteAlertDialog(position: Int){
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setMessage("Are you sure you want to delete this note?")
+            .setCancelable(false)
+            .setPositiveButton("Delete") { _, _ ->
+                noteClickDeleteInterface.onDeleteIconClick(allNotes[position]) // delete note
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+            }
+        val alert = dialogBuilder.create()
+        alert.setTitle("Delete this note?")
+        alert.show()
+    }
 }
+
+
 
 interface NoteClickDeleteInterface {
     // creating a method for when the delete icon is clicked
