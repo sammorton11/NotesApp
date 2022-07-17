@@ -74,7 +74,6 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         intent.putExtra("noteDescription", note.noteDescription)
         intent.putExtra("noteId", note.id)
         startActivity(intent)
-
     }
 
     override fun onNoteClick(note: Note) {

@@ -1,5 +1,4 @@
 package com.example.mynotesapp.pages
-
 import com.example.mynotesapp.tests.BaseTest
 import com.example.mynotesapp.R
 

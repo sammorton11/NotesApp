@@ -22,9 +22,8 @@ class AddEditNoteActivity : AppCompatActivity() {
     private lateinit var saveBtn: Button
     private lateinit var cancelButton: Button
     private lateinit var viewModel: NoteViewModel
-
     private val noteType by lazy { intent.getStringExtra("noteType") }
-
+    
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {

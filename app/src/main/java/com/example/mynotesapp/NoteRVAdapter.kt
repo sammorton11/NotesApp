@@ -59,8 +59,8 @@ class NoteRVAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<Note>) {
         allNotes.clear() // clear old list
-        allNotes.addAll(newList)//adding a new list to the all notes list.
-        notifyDataSetChanged() //notify the adapter.
+        allNotes.addAll(newList) // update
+        notifyDataSetChanged()
     }
 
 
