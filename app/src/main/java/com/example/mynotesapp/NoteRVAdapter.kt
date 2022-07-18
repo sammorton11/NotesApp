@@ -17,7 +17,9 @@ class NoteRVAdapter(
     private val noteClickInterface: NoteClickInterface
 ) :
     RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
+
     private val allNotes = ArrayList<Note>()
+
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -25,6 +27,7 @@ class NoteRVAdapter(
         val dateTV = itemView.findViewById<TextView>(R.id.idTVDate)!! // date label
         val deleteIV = itemView.findViewById<ImageView>(R.id.idIVDelete)!! // delete button
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflating layout file for each item of recycler view
@@ -52,9 +55,11 @@ class NoteRVAdapter(
         }
     }
 
+
     override fun getItemCount(): Int {
         return allNotes.size
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<Note>) {
@@ -80,7 +85,6 @@ class NoteRVAdapter(
         alert.show()
     }
 }
-
 
 
 interface NoteClickDeleteInterface {

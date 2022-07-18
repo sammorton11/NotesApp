@@ -25,7 +25,6 @@ abstract class NoteDatabase : RoomDatabase() {
                     "note_database"
                 ).build()
                 INSTANCE = instance
-                // return instance
                 instance
             }
 
