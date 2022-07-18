@@ -7,16 +7,15 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.mynotesapp.viewmodels.NoteViewModel
 import com.example.mynotesapp.R
+import com.example.mynotesapp.viewmodels.NoteViewModel
 
 class AddEditNoteActivity : AppCompatActivity() {
 
-    lateinit var noteTitleEdt: EditText
-    lateinit var noteEdt: EditText
+    private lateinit var noteTitleEdt: EditText
+    private lateinit var noteEdt: EditText
     private var noteID: Int = -1
 
     private lateinit var saveBtn: Button
@@ -31,14 +30,16 @@ class AddEditNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
         initializeViewModel()
-        setupUI()
 
-        noteTitleEdt = findViewById(R.id.idEdtNoteName) // edit text for the title
-        noteEdt = findViewById(R.id.idEdtNoteDesc)
+        noteTitleEdt = findViewById(R.id.idEdtNoteName) // Title of Note
+        noteEdt = findViewById(R.id.idEdtNoteDesc) // Note Description
         cancelButton = findViewById(R.id.idCancelButton)
+        saveBtn = findViewById(R.id.idBtn)
+
+        setupUI(noteTitleEdt, noteEdt, saveBtn)
 
         saveBtn.setOnClickListener {
-            saveData() //update note
+            saveData()
         }
 
         cancelButton.setOnClickListener{
@@ -46,39 +47,11 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializeViewModel(){
-        // initializing view modal.
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[NoteViewModel::class.java]
-    }
-
-    private fun goBackToMainPage(){
-        startActivity(Intent(applicationContext, MainActivity::class.java))
-    }
-
-    private fun setupUI(){
-
-        noteTitleEdt = findViewById(R.id.idEdtNoteName) // edit text for the title
-        noteEdt = findViewById(R.id.idEdtNoteDesc) // edit text for the note description
-        saveBtn = findViewById(R.id.idBtn) // save button
-        cancelButton = findViewById(R.id.idCancelButton)
-
-        // setting data to the edit text view
-        if (noteType.equals("Edit")) {
-            val noteTitle = intent.getStringExtra("noteTitle")
-            val noteDescription = intent.getStringExtra("noteDescription")
-            noteID = intent.getIntExtra("noteId", -1)
-            saveBtn.text = getString(R.string.update_note)
-            noteTitleEdt.setText(noteTitle)
-            noteEdt.setText(noteDescription)
-            supportActionBar?.setTitle(getString(R.string.update_note))
-
-        } else {
-            saveBtn.text = getString(R.string.save_note)
-            supportActionBar?.title = getString(R.string.save_note)
-        }
+    private fun setupUI(noteTitleEdt: EditText, noteEdt: EditText, saveBtn: Button){
+        val noteTitle = intent.getStringExtra("noteTitle")
+        val noteDescription = intent.getStringExtra("noteDescription")
+        noteID = intent.getIntExtra("noteId", -1)
+        viewModel.setupUI(noteTitleEdt, noteEdt, saveBtn, noteType, noteDescription, noteTitle)
     }
 
     //Update UI
@@ -88,5 +61,15 @@ class AddEditNoteActivity : AppCompatActivity() {
         viewModel.saveData(noteTitleEdt, noteEdt, noteType, noteID, this)
         goBackToMainPage()
         this.finish()
+    }
+
+    private fun initializeViewModel(){
+        viewModel = ViewModelProvider(
+            this, ViewModelProvider.AndroidViewModelFactory
+            .getInstance(application))[NoteViewModel::class.java]
+    }
+
+    private fun goBackToMainPage(){
+        startActivity(Intent(applicationContext, MainActivity::class.java))
     }
 }

@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val actionBar = supportActionBar
-        actionBar!!.title = "Notes"
+        supportActionBar?.title = "Notes"
 
         notesRV = findViewById(R.id.notesRV) // RecyclerView
         addFAB = findViewById(R.id.idFAB) // FloatingActionButton - opens task edit page
@@ -53,21 +52,16 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
     }
 
     private fun initializeViewModel(){
-        // initializing view modal.
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[NoteViewModel::class.java]
+        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
+            .getInstance(application))[NoteViewModel::class.java]
     }
 
-    // open page to add notes
     private fun openAddNotePage() {
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
         startActivity(intent)
     }
 
     private fun openEditNotePage(note: Note){
-
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
         intent.putExtra("noteType", "Edit")
         intent.putExtra("noteTitle", note.noteTitle)
