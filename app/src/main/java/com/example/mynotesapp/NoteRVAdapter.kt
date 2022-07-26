@@ -14,7 +14,8 @@ import com.example.mynotesapp.data.Note
 class NoteRVAdapter(
     private val context: Context,
     private val noteClickDeleteInterface: NoteClickDeleteInterface,
-    private val noteClickInterface: NoteClickInterface
+    private val noteClickInterface: NoteClickInterface,
+    private val noteTimerClickInterface: NoteTimerClickInterface
 ) :
     RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
 
@@ -26,6 +27,7 @@ class NoteRVAdapter(
         val noteTV = itemView.findViewById<TextView>(R.id.idTVNote)!! // note title in list item
         val dateTV = itemView.findViewById<TextView>(R.id.idTVDate)!! // date label
         val deleteIV = itemView.findViewById<ImageView>(R.id.idIVDelete)!! // delete button
+        val timerButton = itemView.findViewById<ImageView>(R.id.timerButton)!! // timer icon button
     }
 
 
@@ -52,6 +54,10 @@ class NoteRVAdapter(
         // click listener for recycler view item at certain index
         holder.itemView.setOnClickListener {
             noteClickInterface.onNoteClick(allNotes[position])
+        }
+
+        holder.timerButton.setOnClickListener {
+            noteTimerClickInterface.onTimerClick(allNotes[position])
         }
     }
 
@@ -95,4 +101,9 @@ interface NoteClickDeleteInterface {
 interface NoteClickInterface {
     // creating a method for updating recycler view item
     fun onNoteClick(note: Note)
+}
+
+interface NoteTimerClickInterface {
+
+    fun onTimerClick(note: Note)
 }

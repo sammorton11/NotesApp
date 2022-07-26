@@ -8,4 +8,5 @@
     <string name="cancel">Cancel</string>
     <string name="update_note">Update Note</string>
     <string name="save_note">Save Note</string>
+    <string name="open_timer_for_note_item">Open timer for note item</string>
 </resources>

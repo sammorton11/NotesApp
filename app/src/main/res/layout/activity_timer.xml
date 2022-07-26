@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.TimerActivity"
+    android:background="@color/black_shade_1">
+
+    <TextView
+        android:id="@+id/timerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:fontFamily="@font/coda"
+        android:text="Timer"
+        android:textColor="#189C1E"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/timerEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/black_shade_1"
+        android:fontFamily="@font/coda"
+        android:inputType="number"
+        android:hint="Enter Time Amount Here..."
+        android:textColor="#189C1E"
+        android:textColorHint="@color/material_dynamic_neutral95"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/black_shade_1"
+        android:fontFamily="@font/coda"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/startTimerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/coda"
+        android:text="Start" />
+
+    <Button
+        android:id="@+id/stopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/coda"
+        android:text="Stop" />
+
+
+</LinearLayout>
