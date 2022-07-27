@@ -3,7 +3,7 @@ package com.example.mynotesapp.pages
 import com.example.mynotesapp.R
 import com.example.mynotesapp.tests.BaseTest
 
-class AddNotePage : BaseTest() {
+class AddNotePage : Page() {
 
     fun getTitleEditField(): Int {
         return R.id.idEdtNoteName
