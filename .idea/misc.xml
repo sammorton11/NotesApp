@@ -9,9 +9,11 @@
         <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/activity_add_edit_note.xml" value="0.4893203883495146" />
         <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/activity_main.xml" value="0.38385416666666666" />
         <entry key="..\:/Users/sammo/AndroidStudioProjects/MyNotesApp/app/src/main/res/layout/note_rv_item.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_timer_24.xml" value="0.186" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11851851851851852" />
-        <entry key="app/src/main/res/layout/activity_timer.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_timer.xml" value="0.375" />
         <entry key="app/src/main/res/layout/note_rv_item.xml" value="0.335" />
       </map>
     </option>

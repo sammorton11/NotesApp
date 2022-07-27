@@ -4,33 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".activity.TimerActivity"
     android:background="@color/black_shade_1">
 
-    <TextView
-        android:id="@+id/timerTitle"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:fontFamily="@font/coda"
-        android:text="Timer"
-        android:textColor="#189C1E"
-        android:textSize="22sp" />
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:layout_gravity="start">
 
-    <EditText
-        android:id="@+id/timerEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
-        android:background="@color/black_shade_1"
-        android:fontFamily="@font/coda"
-        android:inputType="number"
-        android:hint="Enter Time Amount Here..."
-        android:textColor="#189C1E"
-        android:textColorHint="@color/material_dynamic_neutral95"
-        android:textSize="22sp" />
+        <TextView
+            android:id="@+id/timerEditText"
+            android:text="25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="@color/black_shade_1"
+            android:fontFamily="@font/coda"
+            android:inputType="number"
+            android:textColor="#189C1E"
+            android:textColorHint="@color/material_dynamic_neutral95"
+            android:textSize="30sp"
+            android:autofillHints="Time amount" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="minutes"
+            android:textSize="28sp"
+            android:textColor="#189C1E"
+
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"/>
+
+        <ImageButton
+            android:id="@+id/upArrowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+            android:layout_gravity="center"
+            android:layout_marginStart="25dp"
+            android:contentDescription="Increase time amount" />
+
+        <ImageButton
+            android:id="@+id/downArrowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:contentDescription="Decrease time amount" />
+
+    </LinearLayout>
+
+
+
 
     <TextView
         android:id="@+id/time"
@@ -38,19 +71,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="45dp"
         android:background="@color/black_shade_1"
         android:fontFamily="@font/coda"
         android:gravity="center_horizontal|center_vertical"
         android:text="0"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp" />
+        android:textColor="#189C1E"
+        android:textSize="48sp" />
 
     <Button
         android:id="@+id/startTimerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/coda"
         android:text="Start" />
 
@@ -59,6 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/coda"
         android:text="Stop" />
 
