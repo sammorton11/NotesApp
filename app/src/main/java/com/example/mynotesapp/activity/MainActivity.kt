@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         val noteRVAdapter = NoteRVAdapter(
             this, this, this, this
         )
-
         notesRV.adapter = noteRVAdapter
 
         viewModel.allNotes.observe(this) { list ->
@@ -54,6 +53,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         }
     }
 
+    //Should I be using a separate factory class to initialize my viewModels? instead of AndroidViewModelFactory? or is this fine?
     private fun initializeViewModel(){
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
             .getInstance(application))[NoteViewModel::class.java]
@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         startActivity(intent)
     }
 
+    //passing intent data when starting edit note activity
     private fun openEditNotePage(note: Note){
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
         intent.putExtra("noteType", "Edit")
@@ -78,6 +79,8 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         startActivity(intent)
     }
 
+
+    //Overriding interfaces from the NoteAdapter class
     override fun onNoteClick(note: Note) {
         openEditNotePage(note)
     }
