@@ -11,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel
 
 class TimerViewModel(application: Application) : AndroidViewModel(application) {
 
+    //Should I be using a Constants class for these properties..?
     private var time_in_milli_seconds = 0L
     private var timeNumber: Long = 25L // initial time amount
     private lateinit var timer: CountDownTimer

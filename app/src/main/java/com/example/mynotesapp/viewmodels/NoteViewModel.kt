@@ -76,6 +76,7 @@ class NoteViewModel (application: Application) : AndroidViewModel(application)  
     }
 
 
+    //Should this stay in the main activity thread? Starting to feel like this shouldn't belong here. Is this too many parameters? lol.
     @SuppressLint("SetTextI18n")
     fun setupUI(
         noteTitleEdt: EditText, noteEdt: EditText, saveBtn: Button, noteType: String?,

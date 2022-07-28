@@ -56,6 +56,7 @@ class TimerActivity : AppCompatActivity() {
 
     private fun initializeTimer() {
 
+        //If the edit field is blank do nothing, else start the timer
         if(timeEdit.text.isNullOrBlank()){
             Toast.makeText(applicationContext, "Time Amount Edit Field is Blank", Toast.LENGTH_SHORT).show()
             return
