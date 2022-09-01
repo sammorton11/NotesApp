@@ -1,12 +1,14 @@
 package com.example.mynotesapp.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.widget.*
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mynotesapp.R
-import com.example.mynotesapp.viewmodels.TimerViewModel
+import com.example.mynotesapp.viewmodels.Timer
+
 
 class TimerActivity : AppCompatActivity() {
 
@@ -16,17 +18,12 @@ class TimerActivity : AppCompatActivity() {
     private lateinit var timeEdit: TextView
     private lateinit var upArrowButton: ImageButton
     private lateinit var downArrowButton: ImageButton
-    private lateinit var viewModel: TimerViewModel
+    private val timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
-
         title = "Timer"
-
-        viewModel = ViewModelProvider(
-            this, ViewModelProvider.AndroidViewModelFactory
-                .getInstance(application))[TimerViewModel::class.java]
 
         timeTextView = findViewById(R.id.time)
         startButton = findViewById(R.id.startTimerButton)
@@ -40,29 +37,28 @@ class TimerActivity : AppCompatActivity() {
         }
 
         stopButton.setOnClickListener {
-            viewModel.stopTimer(startButton)
+            timer.stopTimer(startButton)
         }
 
 
         upArrowButton.setOnClickListener {
-            viewModel.increaseTime(timeEdit)
+            timer.increaseTime(timeEdit)
         }
 
         downArrowButton.setOnClickListener {
-            viewModel.decreaseTime(timeEdit)
+            timer.decreaseTime(timeEdit)
         }
 
     }
 
     private fun initializeTimer() {
-
         //If the edit field is blank do nothing, else start the timer
         if(timeEdit.text.isNullOrBlank()){
             Toast.makeText(applicationContext, "Time Amount Edit Field is Blank", Toast.LENGTH_SHORT).show()
             return
         }
         else{
-            viewModel.startTimer(timeTextView, startButton, this)
+            timer.startTimer(timeTextView, startButton, this)
         }
     }
 

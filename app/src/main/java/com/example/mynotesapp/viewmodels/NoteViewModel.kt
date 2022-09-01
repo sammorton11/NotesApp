@@ -10,49 +10,63 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mynotesapp.data.Note
 import com.example.mynotesapp.data.NoteDatabase
 import com.example.mynotesapp.data.NoteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class NoteViewModel (application: Application) : AndroidViewModel(application)  {
+@HiltViewModel
+//class NoteViewModel (application: Application) : AndroidViewModel(application)  {
+class NoteViewModel
+@Inject constructor(private val noteRepository: NoteRepository) : ViewModel()  {
 
-    private val repository: NoteRepository
-    val allNotes: LiveData<List<Note>>
-
-    init {
-        val dao = NoteDatabase.getDatabase(application).getNotesDao()
-        repository = NoteRepository(dao)
-        allNotes = repository.allNotes
-    }
+//    private val repository: NoteRepository
+    val allNotes: LiveData<List<Note>> = noteRepository.allNotes
+//
+//    init {
+//        val dao = NoteDatabase.getDatabase(application).getNotesDao()
+//        repository = NoteRepository(dao)
+//        allNotes = repository.allNotes
+//    }
 
     fun deleteNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
-        repository.delete(note)
+        noteRepository.delete(note)
     }
 
-    private fun updateNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
-        repository.update(note)
+    fun updateNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
+        noteRepository.update(note)
     }
 
-    private fun addNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
-        repository.insert(note)
+    fun addNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
+        noteRepository.insert(note)
     }
 
 
     // Logic for saving data
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
-    fun saveData(noteTitleEdt: EditText, noteEdt: EditText, noteType: String?, noteID: Int, context: Context ){
+    fun saveData(
+        noteTitleEdt: EditText,
+        noteEdt: EditText,
+        noteType: String?,
+        noteID: Int,
+        context: Context
+    ){
 
         val noteTitle = noteTitleEdt.text.toString()
         val noteDescription = noteEdt.text.toString()
         val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
         val currentDateAndTime: String = sdf.format(Date())
-        //Check the noteType
+
+
         //edit and update note
         if (noteType.equals("Edit")) {
             if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
@@ -76,11 +90,17 @@ class NoteViewModel (application: Application) : AndroidViewModel(application)  
     }
 
 
-    //Should this stay in the main activity thread? Starting to feel like this shouldn't belong here. Is this too many parameters? lol.
+    //Should this stay in the main activity thread?
+    // Starting to feel like this shouldn't belong here. Is this too many parameters? lol.
     @SuppressLint("SetTextI18n")
     fun setupUI(
-        noteTitleEdt: EditText, noteEdt: EditText, saveBtn: Button, noteType: String?,
-        noteDescription: String?, noteTitle: String?) {
+        noteTitleEdt: EditText,
+        noteEdt: EditText,
+        saveBtn: Button,
+        noteType: String?,
+        noteDescription: String?,
+        noteTitle: String?
+    ) {
         // setting data to the edit text view
         if (noteType.equals("Edit")) {
             saveBtn.text = "Update Note"

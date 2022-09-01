@@ -8,8 +8,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 
-class TimerViewModel(application: Application) : AndroidViewModel(application) {
+class Timer {
 
     //Should I be using a Constants class for these properties..?
     private var time_in_milli_seconds = 0L

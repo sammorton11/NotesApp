@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,11 +13,18 @@ import com.example.mynotesapp.*
 import com.example.mynotesapp.data.Note
 import com.example.mynotesapp.viewmodels.NoteViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
 
-class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInterface, NoteTimerClickInterface {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity(),
+    NoteClickInterface,
+    NoteClickDeleteInterface,
+    NoteTimerClickInterface {
 
-    private lateinit var viewModel: NoteViewModel
+    private val viewModel: NoteViewModel by viewModels()
+
     private lateinit var notesRV: RecyclerView
     private lateinit var addFAB: FloatingActionButton
 
@@ -29,7 +37,7 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         addFAB = findViewById(R.id.idFAB) // FloatingActionButton - opens task edit page
         notesRV.layoutManager = LinearLayoutManager(this)
 
-        initializeViewModel()
+      //  initializeViewModel()
         observeAndUpdateData()
 
         addFAB.setOnClickListener {
@@ -47,17 +55,17 @@ class MainActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInt
         notesRV.adapter = noteRVAdapter
 
         viewModel.allNotes.observe(this) { list ->
-            list?.let {
-                noteRVAdapter.updateList(it) // update list of notes with new list
+            list?.let { list ->
+                noteRVAdapter.updateList(list) // update list of notes with new list
             }
         }
     }
 
     //Should I be using a separate factory class to initialize my viewModels? instead of AndroidViewModelFactory? or is this fine?
-    private fun initializeViewModel(){
-        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-            .getInstance(application))[NoteViewModel::class.java]
-    }
+//    private fun initializeViewModel(){
+//        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
+//            .getInstance(application))[NoteViewModel::class.java]
+//    }
 
     private fun openAddNotePage() {
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)

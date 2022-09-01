@@ -6,12 +6,15 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.mynotesapp.R
 import com.example.mynotesapp.viewmodels.NoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddEditNoteActivity : AppCompatActivity() {
 
     private lateinit var noteTitleEdt: EditText
@@ -20,15 +23,15 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     private lateinit var saveBtn: Button
     private lateinit var cancelButton: Button
-    private lateinit var viewModel: NoteViewModel
     private val noteType by lazy { intent.getStringExtra("noteType") }
-    
+    private val viewModel: NoteViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
-        initializeViewModel()
+        //initializeViewModel()
+
 
         noteTitleEdt = findViewById(R.id.idEdtNoteName) // Title of Note
         noteEdt = findViewById(R.id.idEdtNoteDesc) // Note Description
@@ -62,11 +65,11 @@ class AddEditNoteActivity : AppCompatActivity() {
         this.finish()
     }
 
-    private fun initializeViewModel(){
-        viewModel = ViewModelProvider(
-            this, ViewModelProvider.AndroidViewModelFactory
-            .getInstance(application))[NoteViewModel::class.java]
-    }
+//    private fun initializeViewModel(){
+//        viewModel = ViewModelProvider(
+//            this, ViewModelProvider.AndroidViewModelFactory
+//            .getInstance(application))[NoteViewModel::class.java]
+//    }
 
     private fun goBackToMainPage(){
         startActivity(Intent(applicationContext, MainActivity::class.java))
