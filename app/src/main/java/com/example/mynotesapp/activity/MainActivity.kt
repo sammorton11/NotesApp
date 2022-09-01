@@ -34,10 +34,9 @@ class MainActivity : AppCompatActivity(),
         supportActionBar?.title = "Notes"
 
         notesRV = findViewById(R.id.notesRV) // RecyclerView
-        addFAB = findViewById(R.id.idFAB) // FloatingActionButton - opens task edit page
+        addFAB = findViewById(R.id.idFAB) // FloatingActionButton
         notesRV.layoutManager = LinearLayoutManager(this)
 
-      //  initializeViewModel()
         observeAndUpdateData()
 
         addFAB.setOnClickListener {
@@ -60,12 +59,6 @@ class MainActivity : AppCompatActivity(),
             }
         }
     }
-
-    //Should I be using a separate factory class to initialize my viewModels? instead of AndroidViewModelFactory? or is this fine?
-//    private fun initializeViewModel(){
-//        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-//            .getInstance(application))[NoteViewModel::class.java]
-//    }
 
     private fun openAddNotePage() {
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)

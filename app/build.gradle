@@ -60,18 +60,17 @@ dependencies {
     def coroutines =  '1.6.1'
 
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
-    //implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
     implementation 'androidx.activity:activity-ktx:1.5.1'
 
     // hilt di
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
-    //implementation "androidx.hilt:hilt-lifecycle-viewmodel :1.0.0-alpha03"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
 }

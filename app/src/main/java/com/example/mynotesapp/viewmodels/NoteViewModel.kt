@@ -28,14 +28,7 @@ import javax.inject.Inject
 class NoteViewModel
 @Inject constructor(private val noteRepository: NoteRepository) : ViewModel()  {
 
-//    private val repository: NoteRepository
     val allNotes: LiveData<List<Note>> = noteRepository.allNotes
-//
-//    init {
-//        val dao = NoteDatabase.getDatabase(application).getNotesDao()
-//        repository = NoteRepository(dao)
-//        allNotes = repository.allNotes
-//    }
 
     fun deleteNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
         noteRepository.delete(note)
@@ -90,8 +83,8 @@ class NoteViewModel
     }
 
 
-    //Should this stay in the main activity thread?
-    // Starting to feel like this shouldn't belong here. Is this too many parameters? lol.
+    //Should this and saveData() stay in the main thread?
+    // Starting to feel like these don't belong here. lol.
     @SuppressLint("SetTextI18n")
     fun setupUI(
         noteTitleEdt: EditText,

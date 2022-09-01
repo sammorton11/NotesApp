@@ -9,15 +9,15 @@ import kotlinx.coroutines.flow.Flow
 interface NotesDao {
 
     @Insert
-    fun insert(note : Note)
+    suspend fun insert(note : Note)
 
     @Delete
-    fun delete(note: Note)
+    suspend fun delete(note: Note)
 
     @Query("Select * from notesTable order by id ASC")
     fun getAllNotes(): LiveData<List<Note>>
 
     @Update
-    fun update(note: Note)
+    suspend fun update(note: Note)
 
 }

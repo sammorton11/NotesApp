@@ -30,7 +30,6 @@ class AddEditNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
-        //initializeViewModel()
 
 
         noteTitleEdt = findViewById(R.id.idEdtNoteName) // Title of Note
@@ -64,12 +63,6 @@ class AddEditNoteActivity : AppCompatActivity() {
         goBackToMainPage()
         this.finish()
     }
-
-//    private fun initializeViewModel(){
-//        viewModel = ViewModelProvider(
-//            this, ViewModelProvider.AndroidViewModelFactory
-//            .getInstance(application))[NoteViewModel::class.java]
-//    }
 
     private fun goBackToMainPage(){
         startActivity(Intent(applicationContext, MainActivity::class.java))
