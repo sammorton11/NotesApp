@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynotesapp.data.Note
+import kotlinx.coroutines.flow.Flow
 
 class NoteRVAdapter(
     private val context: Context,
@@ -20,7 +21,6 @@ class NoteRVAdapter(
     RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
 
     private val allNotes = ArrayList<Note>()
-
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
