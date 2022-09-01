@@ -20,13 +20,11 @@ class Timer {
 
 
     fun startTimer(timeTextView: TextView, startButton: Button, context: Context){
-        //startButton.text = "Start"
+
         time_in_milli_seconds = timeNumber * 60000L
-        // time count down for 30 seconds,
-        // with 1 second as countDown interval
+
         timer = object : CountDownTimer(time_in_milli_seconds, 1000) {
 
-            // Callback function, fired on regular interval
             @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
                 time_in_milli_seconds = millisUntilFinished
@@ -36,8 +34,6 @@ class Timer {
                 timerRunning = true
             }
 
-            // Callback function, fired
-            // when the time is up
             @SuppressLint("SetTextI18n")
             override fun onFinish() {
                 timeTextView.text = "Task session finished!"

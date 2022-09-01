@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity(),
         notesRV.adapter = noteRVAdapter
 
         viewModel.allNotes.observe(this) { list ->
-            list?.let { list ->
-                noteRVAdapter.updateList(list) // update list of notes with new list
+            list?.let {
+                noteRVAdapter.updateList(it) // update list of notes with new list
             }
         }
     }
