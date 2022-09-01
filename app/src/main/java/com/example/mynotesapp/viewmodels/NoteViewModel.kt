@@ -33,11 +33,11 @@ class NoteViewModel
         noteRepository.delete(note)
     }
 
-    fun updateNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
+    private fun updateNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
         noteRepository.update(note)
     }
 
-    fun addNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
+    private fun addNote(note: Note) = viewModelScope.launch(Dispatchers.IO){
         noteRepository.insert(note)
     }
 
@@ -61,20 +61,26 @@ class NoteViewModel
 
         //edit and update note
         if (noteType.equals("Edit")) {
+
             if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
+
                 val updatedNote = Note(noteTitle, noteDescription, currentDateAndTime)
                 updatedNote.id = noteID
                 updateNote(updatedNote)
                 Toast.makeText(context, "Updated : $noteTitle", Toast.LENGTH_SHORT).show()
+
             } else {
                 Toast.makeText(context, "Error: Missing Title and Description", Toast.LENGTH_SHORT).show()
             }
 
         //add new note
         } else {
+
             if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
+
                 addNote(Note(noteTitle, noteDescription, currentDateAndTime))
                 Toast.makeText(context, "Note added to list : $noteTitle", Toast.LENGTH_SHORT).show()
+
             } else {
                 Toast.makeText(context, "Error: Missing Title and Description", Toast.LENGTH_SHORT).show()
             }

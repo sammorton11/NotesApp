@@ -44,8 +44,8 @@ class AddEditNoteActivity : AppCompatActivity() {
             saveData()
         }
 
-        cancelButton.setOnClickListener{
-            goBackToMainPage()
+        cancelButton.setOnClickListener {
+            startActivity(Intent(applicationContext, MainActivity::class.java))
         }
     }
 
@@ -65,11 +65,8 @@ class AddEditNoteActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     private fun saveData(){
         viewModel.saveData(noteTitleEdt, noteEdt, noteType, noteID, this)
-        goBackToMainPage()
+        startActivity(Intent(applicationContext, MainActivity::class.java))
         this.finish()
     }
 
-    private fun goBackToMainPage(){
-        startActivity(Intent(applicationContext, MainActivity::class.java))
-    }
 }
