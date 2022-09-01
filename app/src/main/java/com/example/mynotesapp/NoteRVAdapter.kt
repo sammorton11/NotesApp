@@ -22,7 +22,6 @@ class NoteRVAdapter(
 
     private val allNotes = ArrayList<Note>()
 
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val noteTV = itemView.findViewById<TextView>(R.id.idTVNote)!! // note title in list item

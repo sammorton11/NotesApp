@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(),
     }
 
 
-    //Overriding interfaces from the NoteAdapter class
+
     override fun onNoteClick(note: Note) {
         openEditNotePage(note)
     }

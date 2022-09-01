@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
 
 
+
 class NoteRepository(private val notesDao: NotesDao) {
 
     val allNotes: LiveData<List<Note>> = notesDao.getAllNotes()

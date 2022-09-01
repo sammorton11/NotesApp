@@ -24,7 +24,6 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-//class NoteViewModel (application: Application) : AndroidViewModel(application)  {
 class NoteViewModel
 @Inject constructor(private val noteRepository: NoteRepository) : ViewModel()  {
 

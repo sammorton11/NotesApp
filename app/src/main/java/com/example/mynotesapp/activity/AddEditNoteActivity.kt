@@ -14,23 +14,24 @@ import com.example.mynotesapp.R
 import com.example.mynotesapp.viewmodels.NoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class AddEditNoteActivity : AppCompatActivity() {
 
     private lateinit var noteTitleEdt: EditText
     private lateinit var noteEdt: EditText
-    private var noteID: Int = -1
-
     private lateinit var saveBtn: Button
     private lateinit var cancelButton: Button
+    private var noteID: Int = -1
     private val noteType by lazy { intent.getStringExtra("noteType") }
+
     private val viewModel: NoteViewModel by viewModels()
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
-
 
         noteTitleEdt = findViewById(R.id.idEdtNoteName) // Title of Note
         noteEdt = findViewById(R.id.idEdtNoteDesc) // Note Description
@@ -48,12 +49,16 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
     }
 
+
     private fun setupUI(noteTitleEdt: EditText, noteEdt: EditText, saveBtn: Button){
+
         val noteTitle = intent.getStringExtra("noteTitle")
         val noteDescription = intent.getStringExtra("noteDescription")
         noteID = intent.getIntExtra("noteId", -1)
+
         viewModel.setupUI(noteTitleEdt, noteEdt, saveBtn, noteType, noteDescription, noteTitle)
     }
+
 
     //Update UI
     @SuppressLint("SimpleDateFormat")

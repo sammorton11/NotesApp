@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
+
 //Simple Dao interface
 @Dao
 interface NotesDao {

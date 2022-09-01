@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-// entity table with title, description, and timestamp columns
 @Entity(tableName = "notesTable")
 data class Note (
     @ColumnInfo(name = "title")val noteTitle :String,
