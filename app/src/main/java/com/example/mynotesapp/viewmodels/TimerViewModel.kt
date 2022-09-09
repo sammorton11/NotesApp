@@ -11,8 +11,7 @@ import androidx.lifecycle.AndroidViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 
 class Timer {
-
-    //Should I be using a Constants class for these properties..?
+    //Should I be using a Constants class for these properties, or is this fine..?
     private var time_in_milli_seconds = 0L
     private var timeNumber: Long = 25L // initial time amount
     private lateinit var timer: CountDownTimer

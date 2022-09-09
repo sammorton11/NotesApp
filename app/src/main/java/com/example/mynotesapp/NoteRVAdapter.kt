@@ -5,6 +5,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -17,10 +19,10 @@ class NoteRVAdapter(
     private val noteClickDeleteInterface: NoteClickDeleteInterface,
     private val noteClickInterface: NoteClickInterface,
     private val noteTimerClickInterface: NoteTimerClickInterface
-) :
-    RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
 
-    private val allNotes = ArrayList<Note>()
+    val allNotes = ArrayList<Note>()
+    //private var isChecked: Boolean = false
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -47,7 +49,6 @@ class NoteRVAdapter(
         holder.dateTV.text = "Date and Time : " + allNotes[position].timeStamp
 
         holder.deleteIV.setOnClickListener {
-            //Alert when delete button is pressed
             deleteNoteAlertDialog(position)
         }
 

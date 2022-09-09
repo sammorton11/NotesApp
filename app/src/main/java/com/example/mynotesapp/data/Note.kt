@@ -11,4 +11,5 @@ data class Note (
     @ColumnInfo(name = "description")val noteDescription :String,
     @ColumnInfo(name = "timestamp")val timeStamp :String) {
     @PrimaryKey(autoGenerate = true) var id = 0
+
 }

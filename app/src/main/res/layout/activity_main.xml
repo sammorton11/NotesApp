@@ -8,15 +8,15 @@
     android:background="@color/black_shade_1"
     tools:context=".activity.MainActivity">
 
-    <!--recycler view for displaying all notes-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesRV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="610dp"
         android:layout_marginTop="5dp"
         tools:listitem="@layout/note_rv_item" />
 
-    <!--fab for adding a new note-->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/idFAB"
         android:layout_width="wrap_content"
@@ -29,5 +29,6 @@
         app:backgroundTint="@color/black_shade_2"
         app:tint="@color/white"
         tools:ignore="ContentDescription" />
+
 
 </RelativeLayout>

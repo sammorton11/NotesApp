@@ -2,6 +2,7 @@ package com.example.mynotesapp.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -15,6 +16,8 @@ import com.example.mynotesapp.viewmodels.NoteViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import java.lang.Exception
+import java.lang.IllegalArgumentException
 
 
 @AndroidEntryPoint
@@ -24,9 +27,9 @@ class MainActivity : AppCompatActivity(),
     NoteTimerClickInterface {
 
     private val viewModel: NoteViewModel by viewModels()
-
     private lateinit var notesRV: RecyclerView
     private lateinit var addFAB: FloatingActionButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +39,6 @@ class MainActivity : AppCompatActivity(),
         notesRV = findViewById(R.id.notesRV) // RecyclerView
         addFAB = findViewById(R.id.idFAB) // FloatingActionButton
         notesRV.layoutManager = LinearLayoutManager(this)
-
         observeAndUpdateData()
 
         addFAB.setOnClickListener {
@@ -47,18 +49,17 @@ class MainActivity : AppCompatActivity(),
 
 
     private fun observeAndUpdateData(){
-
         val noteRVAdapter = NoteRVAdapter(
             this, this, this, this
         )
         notesRV.adapter = noteRVAdapter
-
         viewModel.allNotes.observe(this) { list ->
             list?.let {
-                noteRVAdapter.updateList(it) // update list of notes with new list
+                noteRVAdapter.updateList(it)
             }
         }
     }
+
 
     private fun openAddNotePage() {
         val intent = Intent(this@MainActivity, AddEditNoteActivity::class.java)
