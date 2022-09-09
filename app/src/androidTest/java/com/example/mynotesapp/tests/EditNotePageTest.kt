@@ -9,6 +9,7 @@ import com.example.mynotesapp.activity.AddEditNoteActivity
 import com.example.mynotesapp.activity.MainActivity
 import com.example.mynotesapp.pages.AddNotePage
 import com.example.mynotesapp.pages.EditNotePage
+import com.example.mynotesapp.util.Constants
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,21 +20,18 @@ class EditNotePageTest: EditNotePage() {
     @get:Rule
     val activityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
-    val updateTitle = "Test_Title - Updated"
-    val updateDescription = "Test_Description - Updated"
     val position: Int = 0
-    val updateButtonText = "Update Note"
 
     @MediumTest
     fun test_EditNote(){
         clickListItem(position)
         clearText(getTitleEditField())
         clearText(getNoteDescriptionEditField())
-        typeInText(getTitleEditField(), updateTitle)
-        typeInText(getNoteDescriptionEditField(), updateDescription)
-        checkTextVisibility(updateButtonText)
+        typeInText(getTitleEditField(), Constants.updateTitle)
+        typeInText(getNoteDescriptionEditField(), Constants.updateDescription)
+        checkTextVisibility(Constants.updateButtonText)
         clickButton(getUpdateButton())
-        checkTextVisibility(updateTitle)
+        checkTextVisibility(Constants.updateTitle)
     }
 
     @SmallTest

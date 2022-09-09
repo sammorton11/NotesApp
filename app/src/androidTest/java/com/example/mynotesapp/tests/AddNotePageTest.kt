@@ -9,6 +9,7 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.mynotesapp.activity.AddEditNoteActivity
 import com.example.mynotesapp.activity.MainActivity
 import com.example.mynotesapp.pages.AddNotePage
+import com.example.mynotesapp.util.Constants
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,14 +20,15 @@ class AddNotePageTest: AddNotePage() {
     @get:Rule
     val activityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
+
     @MediumTest
     fun test_AddNote(){
         clickButton(getFabButton())
         checkVisibility(getTitleEditField())
-        typeInText(getTitleEditField(), "Test_Title_01")
+        typeInText(getTitleEditField(), Constants.testTitle)
         checkVisibility(getNoteDescriptionEditField())
-        typeInText(getNoteDescriptionEditField(), "Test_Description_01")
-        checkTextVisibility("Save Note")
+        typeInText(getNoteDescriptionEditField(), Constants.testDescription)
+        checkTextVisibility(Constants.saveButtonText)
         clickButton(getSaveButton())
 
     }
