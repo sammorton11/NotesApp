@@ -2,13 +2,14 @@ package com.example.mynotesapp.pages
 import com.example.mynotesapp.tests.BaseTest
 import com.example.mynotesapp.R
 
-class MainPage : BaseTest() {
+open class MainPage : BaseTest() {
 
-    fun getFabButton(): Int {
+    fun getRecyclerView(): Int{
+        return R.id.notesRV
+    }
+
+    fun getFAB(): Int{
         return R.id.idFAB
     }
 
-    fun getRecyclerView(): Int {
-        return R.id.notesRV
-    }
 }

@@ -30,4 +30,5 @@ class AppModule {
     fun provideNoteDao(appDatabase: NoteDatabase): NotesDao {
         return appDatabase.getNotesDao()
     }
+
 }

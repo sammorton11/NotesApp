@@ -3,9 +3,9 @@ package com.example.mynotesapp.pages
 import com.example.mynotesapp.R
 import com.example.mynotesapp.tests.BaseTest
 
-class AddNotePage : Page() {
+open class AddNotePage : BaseTest() {
 
-    fun getTitleEditField(): Int {
+    fun getTitleEditField(): Int{
         return R.id.idEdtNoteName
     }
 
@@ -20,4 +20,5 @@ class AddNotePage : Page() {
     fun getCancelButton(): Int {
         return R.id.idCancelButton
     }
+
 }
