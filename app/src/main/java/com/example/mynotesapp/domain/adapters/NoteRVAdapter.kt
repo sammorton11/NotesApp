@@ -1,18 +1,16 @@
-package com.example.mynotesapp
+package com.example.mynotesapp.domain.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mynotesapp.data.Note
-import kotlinx.coroutines.flow.Flow
+import com.example.mynotesapp.data.entities.Note
+import com.example.mynotesapp.R
 
 class NoteRVAdapter(
     private val context: Context,
@@ -21,15 +19,14 @@ class NoteRVAdapter(
     private val noteTimerClickInterface: NoteTimerClickInterface
 ) : RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
 
-    val allNotes = ArrayList<Note>()
-    //private var isChecked: Boolean = false
+    private val allNotes = ArrayList<Note>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val noteTV = itemView.findViewById<TextView>(R.id.idTVNote)!! // note title in list item
         val dateTV = itemView.findViewById<TextView>(R.id.idTVDate)!! // date label
         val deleteIV = itemView.findViewById<ImageView>(R.id.idIVDelete)!! // delete button
-        val timerButton = itemView.findViewById<ImageView>(R.id.timerButton)!! // timer icon button
+        val timerButton = itemView.findViewById<ImageView>(R.id.timerIcon)!! // timer icon button
     }
 
 
@@ -44,7 +41,7 @@ class NoteRVAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // setting data to item in recycler view
+
         holder.noteTV.text = allNotes[position].noteTitle
         holder.dateTV.text = "Date and Time : " + allNotes[position].timeStamp
 
@@ -52,7 +49,6 @@ class NoteRVAdapter(
             deleteNoteAlertDialog(position)
         }
 
-        // click listener for recycler view item at certain index
         holder.itemView.setOnClickListener {
             noteClickInterface.onNoteClick(allNotes[position])
         }
@@ -61,7 +57,6 @@ class NoteRVAdapter(
             noteTimerClickInterface.onTimerClick(allNotes[position])
         }
     }
-
 
     override fun getItemCount(): Int {
         return allNotes.size

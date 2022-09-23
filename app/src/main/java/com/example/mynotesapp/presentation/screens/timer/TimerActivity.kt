@@ -1,4 +1,4 @@
-package com.example.mynotesapp.activity
+package com.example.mynotesapp.presentation.screens.timer
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,7 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mynotesapp.R
-import com.example.mynotesapp.viewmodels.Timer
+import com.example.mynotesapp.presentation.viewmodels.Timer
 
 
 class TimerActivity : AppCompatActivity() {

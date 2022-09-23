@@ -1,10 +1,10 @@
-package com.example.mynotesapp.viewmodels
+package com.example.mynotesapp.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mynotesapp.data.Note
-import com.example.mynotesapp.data.NoteRepository
+import com.example.mynotesapp.data.entities.Note
+import com.example.mynotesapp.data.repository.NoteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

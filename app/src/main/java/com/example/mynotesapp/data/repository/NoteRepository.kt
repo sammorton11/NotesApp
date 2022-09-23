@@ -1,11 +1,11 @@
-package com.example.mynotesapp.data
+package com.example.mynotesapp.data.repository
 
 import androidx.lifecycle.LiveData
-import kotlinx.coroutines.flow.Flow
+import com.example.mynotesapp.data.entities.Note
+import com.example.mynotesapp.data.dao.NotesDao
 
 
-
-class NoteRepository(private val notesDao: NotesDao) {
+open class NoteRepository(private val notesDao: NotesDao) {
 
     val allNotes: LiveData<List<Note>> = notesDao.getAllNotes()
 

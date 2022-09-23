@@ -1,9 +1,11 @@
-package com.example.mynotesapp.data
+package com.example.mynotesapp.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.mynotesapp.data.dao.NotesDao
+import com.example.mynotesapp.data.entities.Note
 
 @Database(entities = [Note::class], version = 3, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {

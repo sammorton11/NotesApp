@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_shade_1"
-    tools:context=".activity.MainActivity">
+    tools:context=".presentation.screens.main.MainActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -16,13 +16,11 @@
         android:layout_marginTop="5dp"
         tools:listitem="@layout/note_rv_item" />
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/idFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:src="@drawable/ic_add"
