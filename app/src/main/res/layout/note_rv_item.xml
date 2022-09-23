@@ -47,7 +47,7 @@
             android:textSize="13sp" />
 
         <ImageView
-            android:id="@+id/timerButton"
+            android:id="@+id/timerIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

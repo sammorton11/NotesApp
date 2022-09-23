@@ -1,4 +1,4 @@
-package com.example.mynotesapp.activity
+package com.example.mynotesapp.presentation.screens.add_edit
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,10 +10,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.mynotesapp.R
-import com.example.mynotesapp.data.Note
-import com.example.mynotesapp.viewmodels.NoteViewModel
+import com.example.mynotesapp.data.entities.Note
+import com.example.mynotesapp.presentation.screens.main.MainActivity
+import com.example.mynotesapp.presentation.viewmodels.NoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -106,11 +106,10 @@ class AddEditNoteActivity : AppCompatActivity() {
 
 
     @SuppressLint("SimpleDateFormat")
-    private fun getDateTime(): String{
+    private fun getDateTime(): String {
         val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
-        val currentDateAndTime: String = sdf.format(Date())
 
-        return currentDateAndTime
+        return sdf.format(Date())
     }
 
     private fun goBackToMainPage(){

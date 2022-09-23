@@ -7,5 +7,9 @@ import org.junit.runner.RunWith
 import org.junit.runners.Suite
 
 @RunWith(Suite::class)
-@Suite.SuiteClasses(MainPageTest::class, AddNotePageTest::class, EditNotePageTest::class)
-class TestPlan
+@Suite.SuiteClasses(
+    MainPageTest::class,
+    AddNotePageTest::class,
+    EditNotePageTest::class
+)
+class TestSuite

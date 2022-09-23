@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_shade_1"
-    tools:context=".activity.AddEditNoteActivity">
+    tools:context=".presentation.screens.add_edit.AddEditNoteActivity">
 
 
     <!--edit text for note title-->

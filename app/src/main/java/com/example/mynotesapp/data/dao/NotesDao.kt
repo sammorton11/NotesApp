@@ -1,8 +1,8 @@
-package com.example.mynotesapp.data
+package com.example.mynotesapp.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
+import com.example.mynotesapp.data.entities.Note
 
 
 //Simple Dao interface
@@ -21,7 +21,6 @@ interface NotesDao {
     @Update
     suspend fun update(note: Note)
 
-    // Not used yet!
     @Query("Delete from notesTable")
     suspend fun deleteAll()
 
