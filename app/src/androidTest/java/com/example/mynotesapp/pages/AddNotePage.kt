@@ -1,24 +1,11 @@
 package com.example.mynotesapp.pages
 
-import com.example.mynotesapp.R
-import com.example.mynotesapp.tests.BaseTest
+import com.example.mynotesapp.R.id.*
+import com.example.mynotesapp.util.BaseTest
 
-open class AddNotePage : BaseTest {
-
-    fun getTitleEditField(): Int{
-        return R.id.idEdtNoteName
-    }
-
-    fun getNoteDescriptionEditField(): Int {
-        return R.id.idEdtNoteDesc
-    }
-
-    fun getSaveButton(): Int {
-        return R.id.idBtn
-    }
-
-    fun getCancelButton(): Int {
-        return R.id.idCancelButton
-    }
-
+open class AddNotePage : BaseTest() {
+    fun getTitleEditField() = idEdtNoteName
+    fun getNoteDescriptionEditField() = idEdtNoteDesc
+    fun getSaveButton() = idBtn
+    fun getCancelButton() = idCancelButton
 }

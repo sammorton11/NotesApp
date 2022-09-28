@@ -16,7 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+      //  testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.mynotesapp.util.HiltTestRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
     }
 
@@ -33,10 +34,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
     packagingOptions {
-        exclude 'META-INF/atomicfu.kotlin_module'
+        resources {
+            excludes += ['META-INF/atomicfu.kotlin_module']
+        }
     }
+
+    namespace 'com.example.mynotesapp'
 }
 
 dependencies {
@@ -65,11 +69,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.test.uiautomator:uiautomator:2.2.0"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:3.4.0"
-
-//    androidTestImplementation(
-//            'org.hamcrest:hamcrest-library:2.2'
-//    )
-
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
@@ -95,5 +97,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    //Hilt Testing
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.42'
+    // ...with Kotlin.
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.42'
 
 }

@@ -1,36 +1,16 @@
 package com.example.mynotesapp.pages
-import com.example.mynotesapp.R
-import com.example.mynotesapp.tests.BaseTest
+import com.example.mynotesapp.R.color.white
+import com.example.mynotesapp.R.id.*
+import com.example.mynotesapp.util.BaseTest
 
-open class MainPage: BaseTest {
+open class MainPage: BaseTest() {
 
-    fun getRecyclerView(): Int{
-        return R.id.notesRV
-    }
-
-    fun getFAB(): Int{
-        return R.id.idFAB
-    }
-
-    fun getWhiteTextColor(): Int{
-        return R.color.white
-    }
-
-    fun getTimerIcon(): Int{
-        return R.id.timerIcon
-    }
-
-    fun getDeleteIcon(): Int{
-        return R.id.idIVDelete
-    }
-
-    fun getNoteTitle(): Int{
-        return R.id.idTVNote
-    }
-
-    fun getNoteDateText(): Int{
-        return R.id.idTVDate
-    }
-
+    fun getRecyclerView() = notesRV
+    fun getFAB() = idFAB
+    fun getWhiteTextColor() = white
+    fun getTimerIcon() = timerIcon
+    fun getDeleteIcon() = idIVDelete
+    fun getNoteTitle() = idTVNote
+    fun getNoteDateText() = idTVDate
 
 }

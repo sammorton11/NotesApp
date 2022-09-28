@@ -108,7 +108,6 @@ class AddEditNoteActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     private fun getDateTime(): String {
         val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
-
         return sdf.format(Date())
     }
 

@@ -1,19 +1,24 @@
 package com.example.mynotesapp.tests
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.mynotesapp.presentation.screens.timer.TimerActivity
 import com.example.mynotesapp.pages.TimerPage
+import com.example.mynotesapp.presentation.screens.timer.TimerActivity
+import com.example.mynotesapp.util.Constants.wait_for_timer
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class TimerPageTest: TimerPage() {
 
-    @get:Rule
-    val activityTestRule = ActivityScenarioRule(TimerActivity::class.java)
+    @get:Rule(order = 0)
+    var hiltRule = HiltAndroidRule(this)
+    @get:Rule(order = 1)
+    val testRule = ActivityScenarioRule(TimerActivity::class.java)
 
+    private val actions = UIAction()
+    private val viewTest = VisibilityView()
     private val _timerEditText = getTimerEditText()
     private val _minutesTextView = getMinutesTextView()
     private val _time = getTimeText()
@@ -24,67 +29,65 @@ class TimerPageTest: TimerPage() {
 
     @Test
     fun test_timer_edit_text(){
-        checkVisibility(_timerEditText)
-        checkNoOverlaps(_timerEditText)
-        checkNoEllipsizedText(_timerEditText)
+        viewTest.checkVisibility(_timerEditText)
+        viewTest.checkNoOverlaps(_timerEditText)
+        viewTest.checkNoEllipsizedText(_timerEditText)
     }
 
     @Test
     fun test_minutes_text_view(){
-        checkVisibility(_minutesTextView)
-        checkNoOverlaps(_minutesTextView)
-        checkNoEllipsizedText(_minutesTextView)
-        checkTextVisibility(_minutesTextView, "minutes")
+        viewTest.checkVisibility(_minutesTextView)
+        viewTest.checkNoOverlaps(_minutesTextView)
+        viewTest.checkNoEllipsizedText(_minutesTextView)
+        viewTest.checkTextVisibility(_minutesTextView, "minutes")
     }
 
     @Test
     fun test_increase_time_button(){
-        checkVisibility(_increaseButton)
-        checkNoOverlaps(_increaseButton)
-        checkNoEllipsizedText(_increaseButton)
-        checkNoMultilineButtons(_increaseButton)
-        clickButton(_increaseButton)
+        viewTest.checkVisibility(_increaseButton)
+        viewTest.checkNoOverlaps(_increaseButton)
+        viewTest.checkNoEllipsizedText(_increaseButton)
+        viewTest.checkNoMultilineButtons(_increaseButton)
+        actions.clickButton(_increaseButton)
     }
 
     @Test
     fun test_decrease_time_button(){
-        checkVisibility(_decreaseButton)
-        checkNoOverlaps(_decreaseButton)
-        checkNoEllipsizedText(_decreaseButton)
-        checkNoMultilineButtons(_decreaseButton)
-        clickButton(_decreaseButton)
+        viewTest.checkVisibility(_decreaseButton)
+        viewTest.checkNoOverlaps(_decreaseButton)
+        viewTest.checkNoEllipsizedText(_decreaseButton)
+        viewTest.checkNoMultilineButtons(_decreaseButton)
+        actions.clickButton(_decreaseButton)
     }
 
     @Test
     fun test_time_text_view(){
-        checkVisibility(_time)
-        checkNoOverlaps(_time)
-        checkNoEllipsizedText(_time)
+        viewTest.checkVisibility(_time)
+        viewTest.checkNoOverlaps(_time)
+        viewTest.checkNoEllipsizedText(_time)
     }
 
     @Test
     fun test_start_button(){
-        checkVisibility(_startButton)
-        checkNoOverlaps(_startButton)
-        checkNoEllipsizedText(_startButton)
-        checkNoMultilineButtons(_startButton)
-        clickButton(_startButton)
-
-        Thread.sleep(5000)
-        clickButton(_stopButton)
-        Thread.sleep(5000)
-        checkTextVisibility(_time, ""+String.format("%d min : %d sec", 24, 54 ))
-        checkTextVisibility(_startButton, "Restart")
-        clickButton(_startButton)
+        viewTest.checkVisibility(_startButton)
+        viewTest.checkNoOverlaps(_startButton)
+        viewTest.checkNoEllipsizedText(_startButton)
+        viewTest.checkNoMultilineButtons(_startButton)
+        actions.clickButton(_startButton)
+        wait_for_timer()
+        actions.clickButton(_stopButton)
+        viewTest.checkTextVisibility(_time, ""+String.format("%d min : %d sec", 24, 54 ))
+        viewTest.checkTextVisibility(_startButton, "Restart")
+        actions.clickButton(_startButton)
     }
 
     @Test
     fun test_stop_button(){
-        checkVisibility(_stopButton)
-        checkNoOverlaps(_stopButton)
-        checkNoEllipsizedText(_stopButton)
-        checkNoMultilineButtons(_stopButton)
-        clickButton(_stopButton)
+        viewTest.checkVisibility(_stopButton)
+        viewTest.checkNoOverlaps(_stopButton)
+        viewTest.checkNoEllipsizedText(_stopButton)
+        viewTest.checkNoMultilineButtons(_stopButton)
+        actions.clickButton(_stopButton)
     }
 
 

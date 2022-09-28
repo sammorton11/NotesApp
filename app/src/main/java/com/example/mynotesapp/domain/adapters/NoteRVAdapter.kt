@@ -14,9 +14,9 @@ import com.example.mynotesapp.R
 
 class NoteRVAdapter(
     private val context: Context,
-    private val noteClickDeleteInterface: NoteClickDeleteInterface,
-    private val noteClickInterface: NoteClickInterface,
-    private val noteTimerClickInterface: NoteTimerClickInterface
+    private val noteClickDelete: NoteClickDelete,
+    private val noteClick: NoteClick,
+    private val noteTimerClick: NoteTimerClick
 ) : RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
 
     private val allNotes = ArrayList<Note>()
@@ -50,11 +50,11 @@ class NoteRVAdapter(
         }
 
         holder.itemView.setOnClickListener {
-            noteClickInterface.onNoteClick(allNotes[position])
+            noteClick.onNoteClick(allNotes[position])
         }
 
         holder.timerButton.setOnClickListener {
-            noteTimerClickInterface.onTimerClick(allNotes[position])
+            noteTimerClick.onTimerClick(allNotes[position])
         }
     }
 
@@ -77,7 +77,7 @@ class NoteRVAdapter(
         dialogBuilder.setMessage("Are you sure you want to delete this note?")
             .setCancelable(false)
             .setPositiveButton("Delete") { _, _ ->
-                noteClickDeleteInterface.onDeleteIconClick(allNotes[position]) // delete note
+                noteClickDelete.onDeleteIconClick(allNotes[position]) // delete note
             }
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.cancel()
@@ -89,17 +89,16 @@ class NoteRVAdapter(
 }
 
 
-interface NoteClickDeleteInterface {
+interface NoteClickDelete{
     // creating a method for when the delete icon is clicked
     fun onDeleteIconClick(note: Note)
 }
 
-interface NoteClickInterface {
+interface NoteClick {
     // creating a method for updating recycler view item
     fun onNoteClick(note: Note)
 }
 
-interface NoteTimerClickInterface {
-
+interface NoteTimerClick {
     fun onTimerClick(note: Note)
 }
