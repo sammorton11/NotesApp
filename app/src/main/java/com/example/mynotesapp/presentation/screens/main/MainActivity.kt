@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynotesapp.*
 import com.example.mynotesapp.data.entities.Note
-import com.example.mynotesapp.domain.adapters.NoteClickDeleteInterface
-import com.example.mynotesapp.domain.adapters.NoteClickInterface
-import com.example.mynotesapp.domain.adapters.NoteRVAdapter
-import com.example.mynotesapp.domain.adapters.NoteTimerClickInterface
+import com.example.mynotesapp.domain.adapters.*
 import com.example.mynotesapp.presentation.screens.add_edit.AddEditNoteActivity
 import com.example.mynotesapp.presentation.screens.timer.TimerActivity
 import com.example.mynotesapp.presentation.viewmodels.NoteViewModel
@@ -22,9 +19,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(),
-    NoteClickInterface,
-    NoteClickDeleteInterface,
-    NoteTimerClickInterface {
+    NoteClick,
+    NoteClickDelete,
+    NoteTimerClick {
 
     private val viewModel: NoteViewModel by viewModels()
     private lateinit var notesRV: RecyclerView
@@ -80,7 +77,6 @@ class MainActivity : AppCompatActivity(),
         val intent = Intent(this@MainActivity, TimerActivity::class.java)
         startActivity(intent)
     }
-
 
 
     override fun onNoteClick(note: Note) {

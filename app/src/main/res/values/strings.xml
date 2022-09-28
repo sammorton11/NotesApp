@@ -2,7 +2,7 @@
     <string name="app_name">My Notes App</string>
     <string name="note">Note</string>
     <string name="updated_at">Updated At</string>
-    <string name="delete_button_delete_task_from_list">Delete button delete task from list</string>
+    <string name="delete_button">Delete button</string>
     <string name="enter_your_note_details">Enter Note Details…</string>
     <string name="enter_note_title">Title</string>
     <string name="cancel">Cancel</string>
