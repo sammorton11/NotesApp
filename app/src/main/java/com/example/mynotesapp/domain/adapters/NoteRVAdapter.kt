@@ -2,13 +2,11 @@ package com.example.mynotesapp.domain.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mynotesapp.R
 import com.example.mynotesapp.data.entities.Note
@@ -30,7 +28,6 @@ class NoteRVAdapter(
         val dateTV = itemView.findViewById<TextView>(R.id.idTVDate)!! // date label
         val deleteIV = itemView.findViewById<ImageView>(R.id.idIVDelete)!! // delete button
         val timerButton = itemView.findViewById<ImageView>(R.id.timerIcon)!! // timer icon button
-        val noteCard = itemView.findViewById<CardView>(R.id.noteCard)!!
 
     }
 
@@ -54,7 +51,6 @@ class NoteRVAdapter(
 
         // opens delete dialog when delete icon is clicked
         holder.deleteIV.setOnClickListener {
-
 
             builder.deleteNoteAlertDialog(context) {
                 noteClickDelete.onDeleteIconClick(allNotes[position])

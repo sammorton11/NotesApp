@@ -2,6 +2,7 @@ package com.example.mynotesapp.presentation.activities.timer
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -15,7 +16,7 @@ class TimerActivity : AppCompatActivity() {
     private lateinit var timeTextView: TextView
     private lateinit var startButton: Button
     private lateinit var stopButton: Button
-    private lateinit var timeEdit: TextView
+    private lateinit var timeEdit: EditText
     private lateinit var upArrowButton: ImageButton
     private lateinit var downArrowButton: ImageButton
     private val timer = Timer()
@@ -39,7 +40,6 @@ class TimerActivity : AppCompatActivity() {
         stopButton.setOnClickListener {
             timer.stopTimer(startButton)
         }
-
 
         upArrowButton.setOnClickListener {
             timer.increaseTime(timeEdit)

@@ -16,7 +16,7 @@
         android:orientation="horizontal"
         android:padding="15dp">
 
-        <TextView
+        <EditText
             android:id="@+id/timerEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:textColor="@color/violet"
             android:textColorHint="@color/material_dynamic_neutral95"
             android:textSize="30sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="LabelFor,TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/minutesTextView"
@@ -102,6 +102,5 @@
         android:fontFamily="@font/coda"
         android:text="@string/stop"
         android:textColor="@color/red_pink" />
-
 
 </LinearLayout>

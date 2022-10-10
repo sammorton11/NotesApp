@@ -59,7 +59,7 @@
             android:contentDescription="@string/open_timer_for_note_item"
             android:padding="3dp"
             android:src="@drawable/ic_baseline_timer_24"
-            app:tint="@color/red_orange" />
+            app:tint="@color/violet" />
 
         <!--imageview for displaying delete icon-->
         <ImageView
@@ -75,7 +75,7 @@
             android:contentDescription="@string/delete_button"
             android:padding="3dp"
             android:src="@drawable/ic_delete"
-            app:tint="@color/red_pink" />
+            app:tint="@color/violet" />
 
     </RelativeLayout>
 

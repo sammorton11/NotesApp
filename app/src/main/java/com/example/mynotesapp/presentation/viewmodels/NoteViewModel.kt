@@ -1,7 +1,5 @@
 package com.example.mynotesapp.presentation.viewmodels
 
-import android.provider.MediaStore.Audio.Radio
-import android.widget.Button
 import android.widget.RadioButton
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -45,6 +43,7 @@ class NoteViewModel
         Ascending: RadioButton,
         Descending: RadioButton
     ){
+
         sortByNameButton.setOnClickListener {
 
             if (Ascending.isChecked){
@@ -55,10 +54,10 @@ class NoteViewModel
                 Collections.sort(list, Note.sortNamesDescending())
                 adapter.updateList(list)
             }
-
         }
 
         sortByDateButton.setOnClickListener {
+
             if (Ascending.isChecked){
                 Collections.sort(list, Note.sortDates())
                 adapter.updateList(list)
