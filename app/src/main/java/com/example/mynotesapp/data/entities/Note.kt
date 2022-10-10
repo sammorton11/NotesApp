@@ -18,4 +18,24 @@ data class Note (
     val timeStamp: String
 ) {
     @PrimaryKey(autoGenerate = true) var id = 0
+
+    companion object{
+
+        //Sorting names ascending
+        fun sortNames():Comparator<Note> = Comparator<Note> { o1, o2 ->
+            o1!!.noteTitle.compareTo(o2!!.noteTitle)
+        }
+
+        fun sortNamesDescending():Comparator<Note> = Comparator<Note> { o1, o2 ->
+            o2!!.noteTitle.compareTo(o1!!.noteTitle)
+        }
+
+        fun sortDates():Comparator<Note> = Comparator<Note> { o1, o2 ->
+            o1!!.timeStamp.compareTo(o2!!.timeStamp)
+        }
+
+        fun sortDatesDescending():Comparator<Note> = Comparator<Note> { o1, o2 ->
+            o2!!.timeStamp.compareTo(o1!!.timeStamp)
+        }
+    }
 }

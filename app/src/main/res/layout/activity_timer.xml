@@ -3,47 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".presentation.screens.timer.TimerActivity"
-    android:background="@color/black_shade_1">
+    tools:context=".presentation.activities.timer.TimerActivity">
+
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
         android:orientation="horizontal"
-        android:padding="15dp"
-        android:layout_gravity="start">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/timerEditText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
             android:autofillHints="Time amount"
-            android:background="@color/black_shade_1"
+            android:background="@color/dark_grey"
             android:fontFamily="@font/coda"
             android:gravity="center"
             android:inputType="number"
             android:minHeight="48dp"
             android:text="@string/_25"
-            android:textColor="#189C1E"
+            android:textColor="@color/violet"
             android:textColorHint="@color/material_dynamic_neutral95"
             android:textSize="30sp"
             tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/minutesTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-
             android:text="@string/minutes"
-            android:textColor="#189C1E"
-            android:textSize="28sp" />
+            android:textColor="@color/light_green"
+            android:textSize="28sp"
+            android:textStyle="italic" />
 
         <ImageButton
             android:id="@+id/upArrowButton"
@@ -52,7 +53,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="25dp"
             android:contentDescription="@string/increase_time_amount"
-            android:minHeight="48dp"
+            android:minHeight="18dp"
             android:src="@drawable/ic_baseline_keyboard_arrow_up_24" />
 
         <ImageButton
@@ -62,13 +63,10 @@
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/decrease_time_amount"
-            android:minHeight="48dp"
+            android:minHeight="18dp"
             android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
     </LinearLayout>
-
-
-
 
     <TextView
         android:id="@+id/time"
@@ -77,11 +75,11 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="45dp"
-        android:background="@color/black_shade_1"
+        android:background="@color/dark_grey"
         android:fontFamily="@font/coda"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/_0"
-        android:textColor="#189C1E"
+        android:textColor="@color/violet"
         android:textSize="48sp" />
 
     <Button
@@ -91,16 +89,19 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/coda"
-        android:text="@string/start" />
+        android:text="@string/start"
+        android:textColor="@color/baby_blue"
+        android:textColorHighlight="@color/baby_blue" />
 
     <Button
         android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/coda"
-        android:text="@string/stop" />
+        android:text="@string/stop"
+        android:textColor="@color/red_pink" />
 
 
 </LinearLayout>

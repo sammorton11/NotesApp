@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.mynotesapp.tests
 
 import androidx.test.espresso.intent.Intents.intended
@@ -5,15 +7,15 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.example.mynotesapp.pages.EditNotePage
-import com.example.mynotesapp.presentation.screens.main.MainActivity
-import com.example.mynotesapp.util.Constants.UpdateDescription
-import com.example.mynotesapp.util.Constants.UpdateTitle
-import com.example.mynotesapp.util.Constants.White
+import com.example.mynotesapp.presentation.activities.main.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+// Todo: Need to test the toolbar name - maybe check to see if back button exists
 
 @HiltAndroidTest
 class EditNotePageTest: EditNotePage() {
@@ -25,67 +27,67 @@ class EditNotePageTest: EditNotePage() {
     @get:Rule(order = 2)
     val intentsRule = IntentsTestRule(MainActivity::class.java)
 
-    private val actions = UIAction()
-    private val viewTest = VisibilityView()
-    private val position: Int = 0
-    private val titleEdit = getTitleEditField()
-    private val descriptionEdit = getNoteDescriptionEditField()
-    private val update = getUpdateButton()
-    private val cancel = getCancelButton()
+    private val vAction = UIAction()
+    private val vAssert = VisibilityView()
 
-    @Test
-    fun test_intent(){
+    @Before
+    fun setUp(){
+        vAction.add_note(
+            addNoteButton = floatingActionButton,
+            titleTextDestination = titleEdit,
+            titleText = testTitleText,
+            descriptionTextDestination = descriptionEdit,
+            descriptionText = testDescriptionText,
+            saveButton = save
+        )
+        vAction.clickListItem(firstPosition)
         intended(hasExtra("noteType", "Edit"))
+//        vAssert.isOnEditNotePage()
+    }
+
+    @After
+    fun tear_down(){
+//        vAssert.isOnMainPage()
+        vAction.delete_note(mainRecyclerView, deleteIconButton, firstPosition)
     }
 
     //Title Edit
     @Test
     fun test_Title_Edit(){
-        actions.clickButton(update)
-        actions.clickListItem(position)
-        viewTest.checkNoOverlaps(titleEdit)
-        viewTest.checkNoEllipsizedText(titleEdit)
-        viewTest.checkTextColor(titleEdit, White)
-        actions.clearText(titleEdit)
-        actions.updateText(titleEdit, UpdateTitle)
-        actions.clickButton(update)
-       // checkTextVisibility(Constants.UpdateTitle) Todo: check main screen is visible
+        vAssert.checkVisibility(titleEdit)
+        vAssert.checkNoOverlaps(titleEdit)
+        vAssert.checkNoEllipsizedText(titleEdit)
+        vAssert.checkTextColor(titleEdit, color_white)
+        vAction.clearText(titleEdit)
+        vAction.updateText(titleEdit, updateTitle)
+        vAction.clickButton(update)
     }
 
     //Description Edit
     @Test
     fun test_Description_Edit(){
-//        actions.clickListItem(position)
-        viewTest.checkNoOverlaps(descriptionEdit)
-        viewTest.checkNoEllipsizedText(descriptionEdit)
-        viewTest.checkTextColor(descriptionEdit, White)
-        actions.clearText(descriptionEdit)
-        actions.updateText(descriptionEdit, UpdateDescription)
-        actions.clickButton(update)
+        vAssert.checkVisibility(descriptionEdit)
+        vAssert.checkNoOverlaps(descriptionEdit)
+        vAssert.checkNoEllipsizedText(descriptionEdit)
+        vAssert.checkTextColor(descriptionEdit, color_white)
+        vAction.clearText(descriptionEdit)
+        vAction.updateText(descriptionEdit, updateDescription)
+        vAction.clickButton(update)
     }
 
     //Update Button
     @Test
     fun test_Update_Button(){
-        actions.clickListItem(position)
-        viewTest.checkNoOverlaps(update)
-        viewTest.checkNoEllipsizedText(update)
-      //  viewTest.checkTextVisibility(update, UpdateButtonText)
-        viewTest.checkTextColor(update, White)
-        actions.clickButton(update)
-    }
-
-    @Test
-    fun test_edit_note_intent(){
-        actions.clickListItem(position)
-        intended(hasExtra("noteType", "Edit"))
+        vAssert.checkNoOverlaps(update)
+        vAssert.checkNoEllipsizedText(update)
+        vAssert.checkTextVisibility(update, updateLabel)
+        vAssert.checkTextColor(update, color_white)
+        vAction.clickButton(update)
     }
 
     //Cancel Button
     @Test
     fun test_Cancel_Button(){
-        actions.clickListItem(position)
-        actions.clickButton(cancel)
-       // checkTextVisibility(Constants.AppName) // Todo: check main screen is visible
+        vAction.clickButton(cancel)
     }
 }

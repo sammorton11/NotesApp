@@ -2,15 +2,17 @@ package com.example.mynotesapp.domain.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mynotesapp.data.entities.Note
 import com.example.mynotesapp.R
+import com.example.mynotesapp.data.entities.Note
+import com.example.mynotesapp.util.Builders
 
 class NoteRVAdapter(
     private val context: Context,
@@ -20,6 +22,7 @@ class NoteRVAdapter(
 ) : RecyclerView.Adapter<NoteRVAdapter.ViewHolder>() {
 
     private val allNotes = ArrayList<Note>()
+    private val builder: Builders = Builders()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -27,67 +30,61 @@ class NoteRVAdapter(
         val dateTV = itemView.findViewById<TextView>(R.id.idTVDate)!! // date label
         val deleteIV = itemView.findViewById<ImageView>(R.id.idIVDelete)!! // delete button
         val timerButton = itemView.findViewById<ImageView>(R.id.timerIcon)!! // timer icon button
+        val noteCard = itemView.findViewById<CardView>(R.id.noteCard)!!
+
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         // inflating layout file for each item of recycler view
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.note_rv_item,
             parent, false
         )
+
         return ViewHolder(itemView)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.noteTV.text = allNotes[position].noteTitle
-        holder.dateTV.text = "Date and Time : " + allNotes[position].timeStamp
+        holder.dateTV.text = allNotes[position].timeStamp
 
+        // opens delete dialog when delete icon is clicked
         holder.deleteIV.setOnClickListener {
-            deleteNoteAlertDialog(position)
+
+
+            builder.deleteNoteAlertDialog(context) {
+                noteClickDelete.onDeleteIconClick(allNotes[position])
+            }
         }
 
+        //click card at position in list
         holder.itemView.setOnClickListener {
             noteClick.onNoteClick(allNotes[position])
         }
 
+        //opens timer page
         holder.timerButton.setOnClickListener {
             noteTimerClick.onTimerClick(allNotes[position])
         }
+
     }
 
     override fun getItemCount(): Int {
         return allNotes.size
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<Note>) {
-        allNotes.clear() // clear old list
-        allNotes.addAll(newList) // update
+        allNotes.clear()
+        allNotes.addAll(newList)
         notifyDataSetChanged()
     }
 
-
-    //Alert when delete button is pressed
-    private fun deleteNoteAlertDialog(position: Int){
-        val dialogBuilder = AlertDialog.Builder(context)
-        dialogBuilder.setMessage("Are you sure you want to delete this note?")
-            .setCancelable(false)
-            .setPositiveButton("Delete") { _, _ ->
-                noteClickDelete.onDeleteIconClick(allNotes[position]) // delete note
-            }
-            .setNegativeButton("Cancel") { dialog, _ ->
-                dialog.cancel()
-            }
-        val alert = dialogBuilder.create()
-        alert.setTitle("Delete this note?")
-        alert.show()
-    }
 }
-
 
 interface NoteClickDelete{
     // creating a method for when the delete icon is clicked

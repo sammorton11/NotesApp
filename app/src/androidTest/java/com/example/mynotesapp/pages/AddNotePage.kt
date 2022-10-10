@@ -1,11 +1,7 @@
 package com.example.mynotesapp.pages
 
-import com.example.mynotesapp.R.id.*
-import com.example.mynotesapp.util.BaseTest
+import com.example.mynotesapp.util.BasePage
 
-open class AddNotePage : BaseTest() {
-    fun getTitleEditField() = idEdtNoteName
-    fun getNoteDescriptionEditField() = idEdtNoteDesc
-    fun getSaveButton() = idBtn
-    fun getCancelButton() = idCancelButton
+abstract class AddNotePage : BasePage() {
+    protected val saveText = "Save Note"
 }

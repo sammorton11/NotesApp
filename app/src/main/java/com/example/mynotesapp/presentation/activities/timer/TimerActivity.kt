@@ -1,4 +1,4 @@
-package com.example.mynotesapp.presentation.screens.timer
+package com.example.mynotesapp.presentation.activities.timer
 
 import android.os.Bundle
 import android.widget.Button

@@ -1,32 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_shade_1"
-    tools:context=".presentation.screens.main.MainActivity">
+    android:background="@color/dark_grey"
+    tools:context=".presentation.activities.main.MainActivity"
+    android:orientation="vertical">
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical">
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="209dp"
+            android:layout_height="50dp"
+
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.079"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <RadioButton
+                android:id="@+id/sortByDateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="7dp"
+                android:checked="false"
+                android:text="Date"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/sortByNameButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Name"
+                android:textColor="@color/white" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="209dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.079"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            app:layout_constraintVertical_bias="0.0">
+
+            <RadioButton
+                android:id="@+id/sortAscending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ASC"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/sortDescending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DSC"
+                android:textColor="@color/white" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/idFAB"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="75dp"
+            android:layout_height="55dp"
+            android:text="Add Note"
+            android:textColor="@color/baby_blue"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clearListButton"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/clearListButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="75dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="16dp"
+            android:text="Clear"
+            android:textColor="@color/red_pink"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesRV"
         android:layout_width="match_parent"
         android:layout_height="610dp"
         android:layout_marginTop="5dp"
+        android:padding="10dp"
         tools:listitem="@layout/note_rv_item" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/idFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="@color/black_shade_2"
-        app:tint="@color/white"
-        tools:ignore="ContentDescription" />
-
-
-</RelativeLayout>
+</LinearLayout>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/noteCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/baby_blue"
     android:elevation="65dp"
-    app:cardBackgroundColor="@color/black_shade_2"
     app:cardCornerRadius="20dp"
     app:cardElevation="70dp">
 
@@ -27,7 +27,7 @@
             android:layout_toStartOf="@id/idIVDelete"
             android:padding="4dp"
             android:text="@string/note"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <!--text view for displaying our last updated text-->
@@ -43,7 +43,7 @@
             android:layout_toStartOf="@id/idIVDelete"
             android:padding="4dp"
             android:text="@string/updated_at"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="13sp" />
 
         <ImageView
@@ -51,16 +51,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_margin="3dp"
             android:layout_marginStart="3dp"
             android:layout_marginTop="3dp"
-            android:layout_marginEnd="327dp"
+            android:layout_marginEnd="3dp"
             android:layout_marginBottom="3dp"
             android:layout_toStartOf="@+id/idIVDelete"
             android:contentDescription="@string/open_timer_for_note_item"
             android:padding="3dp"
             android:src="@drawable/ic_baseline_timer_24"
-            app:tint="@color/white" />
+            app:tint="@color/red_orange" />
 
         <!--imageview for displaying delete icon-->
         <ImageView
@@ -76,7 +75,7 @@
             android:contentDescription="@string/delete_button"
             android:padding="3dp"
             android:src="@drawable/ic_delete"
-            app:tint="@color/white" />
+            app:tint="@color/red_pink" />
 
     </RelativeLayout>
 

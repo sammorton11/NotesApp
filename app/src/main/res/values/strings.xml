@@ -12,7 +12,7 @@
     <string name="_0">0</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-    <string name="minutes">minutes</string>
+    <string name="minutes">min</string>
     <string name="increase_time_amount">Increase time amount</string>
     <string name="_25">25</string>
     <string name="decrease_time_amount">Decrease time amount</string>

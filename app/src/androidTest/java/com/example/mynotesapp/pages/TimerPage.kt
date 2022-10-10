@@ -3,12 +3,14 @@ package com.example.mynotesapp.pages
 import com.example.mynotesapp.R.id.*
 import com.example.mynotesapp.util.BaseTest
 
-open class TimerPage: BaseTest() {
-    fun getTimerEditText() = timerEditText
-    fun getMinutesTextView() = minutesTextView
-    fun getIncreaseButton() = upArrowButton
-    fun getDecreaseButton() = downArrowButton
-    fun getTimeText() = time
-    fun getStartButton() = startTimerButton
-    fun getStopButton() = stopButton
+abstract class TimerPage: BaseTest() {
+
+    fun wait_for_timer() = Thread.sleep(5000)
+    val timerEdit = timerEditText
+    val minutesText = minutesTextView
+    val increaseButton = upArrowButton
+    val decreaseButton = downArrowButton
+    val timeText = time
+    val startTimer = startTimerButton
+    val stopTimer = stopButton
 }

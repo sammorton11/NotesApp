@@ -1,77 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_shade_1"
-    tools:context=".presentation.screens.add_edit.AddEditNoteActivity">
+    android:background="@color/dark_grey"
+    tools:context=".presentation.activities.add_edit.AddEditNoteActivity"
+    android:orientation="vertical">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical">
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/redPinkButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Red Pink"
+                android:textColor="@color/red_pink"/>
+
+            <RadioButton
+                android:id="@+id/violetButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Violet"
+                android:textColor="@color/violet"/>
+
+            <RadioButton
+                android:id="@+id/lightGreenButton"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Light Green"
+                android:textColor="@color/light_green"/>
+        </RadioGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    <RadioGroup-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/redPinkButton"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Red Pink" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/violetButton"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Violet" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/lightGreenButton"-->
+<!--            android:layout_width="175dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Light Green" />-->
+
+<!--    </RadioGroup>-->
 
     <!--edit text for note title-->
+
+    <!--edit text for note description-->
+
+
+    <!--button for saving and updating a note-->
 
     <EditText
         android:id="@+id/idEdtNoteName"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:background="@color/gray"
         android:hint="@string/enter_note_title"
         android:importantForAutofill="no"
         android:inputType="text"
+        android:padding="7dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
-    <!--edit text for note description-->
     <EditText
         android:id="@+id/idEdtNoteDesc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/idBtn"
-        android:layout_below="@id/idEdtNoteName"
+        android:layout_height="300dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:autofillHints=""
-        android:background="@color/black_shade_1"
+        android:background="@color/gray"
         android:gravity="start|top"
         android:hint="@string/enter_your_note_details"
         android:inputType="textMultiLine"
+        android:padding="7dp"
         android:singleLine="false"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
-    <!--button for saving and updating a note-->
     <Button
         android:id="@+id/idBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="72dp"
-        android:background="@color/black_shade_1"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="7dp"
         android:text="Button"
         android:textAllCaps="false"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:background="@color/gray"/>
 
     <Button
         android:id="@+id/idCancelButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="12dp"
-        android:background="@color/black_shade_1"
         android:text="@string/cancel"
         android:textAllCaps="false"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:background="@color/gray"/>
 
-</RelativeLayout>
+</LinearLayout>
 

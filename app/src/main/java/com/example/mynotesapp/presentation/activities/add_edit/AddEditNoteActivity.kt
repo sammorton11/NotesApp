@@ -1,7 +1,8 @@
-package com.example.mynotesapp.presentation.screens.add_edit
+package com.example.mynotesapp.presentation.activities.add_edit
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
@@ -12,7 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mynotesapp.R
 import com.example.mynotesapp.data.entities.Note
-import com.example.mynotesapp.presentation.screens.main.MainActivity
+import com.example.mynotesapp.presentation.CardColorState
+import com.example.mynotesapp.presentation.activities.main.MainActivity
 import com.example.mynotesapp.presentation.viewmodels.NoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -26,6 +28,10 @@ class AddEditNoteActivity : AppCompatActivity() {
     private lateinit var noteEdt: EditText
     private lateinit var saveBtn: Button
     private lateinit var cancelButton: Button
+    private lateinit var redPinkButton: Button
+    private lateinit var violetButton: Button
+    private lateinit var lightGreenButton: Button
+
     private var noteID: Int = -1
     private val noteType by lazy { intent.getStringExtra("noteType") }
     private val viewModel: NoteViewModel by viewModels()
@@ -36,6 +42,10 @@ class AddEditNoteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_edit_note)
         setupUI()
 
+        redPinkButton = findViewById(R.id.redPinkButton)
+        violetButton = findViewById(R.id.violetButton)
+        lightGreenButton = findViewById(R.id.lightGreenButton)
+
         saveBtn.setOnClickListener {
             saveData() //update note
         }
@@ -43,6 +53,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         cancelButton.setOnClickListener{
             goBackToMainPage()
         }
+
     }
 
 
@@ -79,6 +90,8 @@ class AddEditNoteActivity : AppCompatActivity() {
         val noteTitle = noteTitleEdt.text.toString()
         val noteDescription = noteEdt.text.toString()
 
+
+
         //Edit note
         if (noteType.equals("Edit")) {
             if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
@@ -112,6 +125,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     private fun goBackToMainPage(){
+        intent.putExtra("noteColor", Color.WHITE)
         startActivity(Intent(applicationContext, MainActivity::class.java))
         this.finish()
     }

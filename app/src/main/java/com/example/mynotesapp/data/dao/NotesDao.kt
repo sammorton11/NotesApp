@@ -9,14 +9,14 @@ import com.example.mynotesapp.data.entities.Note
 @Dao
 interface NotesDao {
 
+    @Query("Select * from notesTable order by id ASC")
+    fun getAllNotes(): LiveData<List<Note>>
+
     @Insert
     suspend fun insert(note : Note)
 
     @Delete
     suspend fun delete(note: Note)
-
-    @Query("Select * from notesTable order by id ASC")
-    fun getAllNotes(): LiveData<List<Note>>
 
     @Update
     suspend fun update(note: Note)

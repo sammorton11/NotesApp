@@ -14,15 +14,15 @@
         android:theme="@style/Theme.MyNotesApp"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.screens.timer.TimerActivity"
+            android:name=".presentation.activities.timer.TimerActivity"
             android:exported="false"
-            android:parentActivityName=".presentation.screens.main.MainActivity" />
+            android:parentActivityName=".presentation.activities.main.MainActivity" />
         <activity
-            android:name=".presentation.screens.add_edit.AddEditNoteActivity"
+            android:name=".presentation.activities.add_edit.AddEditNoteActivity"
             android:exported="false"
-            android:parentActivityName=".presentation.screens.main.MainActivity" />
+            android:parentActivityName=".presentation.activities.main.MainActivity" />
         <activity
-            android:name=".presentation.screens.main.MainActivity"
+            android:name=".presentation.activities.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
