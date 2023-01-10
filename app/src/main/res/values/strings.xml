@@ -16,4 +16,12 @@
     <string name="increase_time_amount">Increase time amount</string>
     <string name="_25">25</string>
     <string name="decrease_time_amount">Decrease time amount</string>
+    <string name="dsc">DSC</string>
+    <string name="asc">ASC</string>
+    <string name="name">Name</string>
+    <string name="date">Date</string>
+    <string name="clear">Clear</string>
+    <string name="add">Add</string>
+    <string name="sorting_menu">Sorting Menu</string>
+    <string name="description">Description</string>
 </resources>

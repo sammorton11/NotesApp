@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.mynotesapp.data.entities.Note
 
-
-//Simple Dao interface
 @Dao
 interface NotesDao {
 

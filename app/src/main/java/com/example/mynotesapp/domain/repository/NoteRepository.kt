@@ -2,7 +2,6 @@ package com.example.mynotesapp.domain.repository
 
 import androidx.lifecycle.LiveData
 import com.example.mynotesapp.data.entities.Note
-import com.example.mynotesapp.data.dao.NotesDao
 
 
 interface NoteRepository {
@@ -15,6 +14,6 @@ interface NoteRepository {
 
     suspend fun delete(note: Note)
 
-    suspend fun deleteAll(note: List<Note>)
+    suspend fun deleteAll()
 
 }

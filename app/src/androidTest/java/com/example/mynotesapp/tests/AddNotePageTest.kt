@@ -7,8 +7,8 @@ import androidx.test.espresso.intent.Intents
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.rule.ActivityTestRule
 import com.example.mynotesapp.pages.AddNotePage
-import com.example.mynotesapp.presentation.activities.add_edit.AddEditNoteActivity
-import com.example.mynotesapp.presentation.activities.main.MainActivity
+import com.example.mynotesapp.presentation.activities.AddEditNoteActivity
+import com.example.mynotesapp.presentation.activities.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After

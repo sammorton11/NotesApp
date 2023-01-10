@@ -19,8 +19,8 @@ import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.mynotesapp.R
-import com.example.mynotesapp.presentation.activities.add_edit.AddEditNoteActivity
-import com.example.mynotesapp.presentation.activities.main.MainActivity
+import com.example.mynotesapp.presentation.activities.AddEditNoteActivity
+import com.example.mynotesapp.presentation.activities.MainActivity
 import org.hamcrest.Matcher
 
 

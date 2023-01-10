@@ -7,7 +7,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.example.mynotesapp.pages.EditNotePage
-import com.example.mynotesapp.presentation.activities.main.MainActivity
+import com.example.mynotesapp.presentation.activities.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
@@ -33,7 +33,6 @@ class EditNotePageTest: EditNotePage() {
     @Before
     fun setUp(){
         vAction.add_note(
-            addNoteButton = floatingActionButton,
             titleTextDestination = titleEdit,
             titleText = testTitleText,
             descriptionTextDestination = descriptionEdit,
@@ -57,7 +56,7 @@ class EditNotePageTest: EditNotePage() {
         vAssert.checkVisibility(titleEdit)
         vAssert.checkNoOverlaps(titleEdit)
         vAssert.checkNoEllipsizedText(titleEdit)
-        vAssert.checkTextColor(titleEdit, color_white)
+        vAssert.checkTextColor(titleEdit, colorWhite)
         vAction.clearText(titleEdit)
         vAction.updateText(titleEdit, updateTitle)
         vAction.clickButton(update)
@@ -69,7 +68,7 @@ class EditNotePageTest: EditNotePage() {
         vAssert.checkVisibility(descriptionEdit)
         vAssert.checkNoOverlaps(descriptionEdit)
         vAssert.checkNoEllipsizedText(descriptionEdit)
-        vAssert.checkTextColor(descriptionEdit, color_white)
+        vAssert.checkTextColor(descriptionEdit, colorWhite)
         vAction.clearText(descriptionEdit)
         vAction.updateText(descriptionEdit, updateDescription)
         vAction.clickButton(update)
@@ -81,7 +80,7 @@ class EditNotePageTest: EditNotePage() {
         vAssert.checkNoOverlaps(update)
         vAssert.checkNoEllipsizedText(update)
         vAssert.checkTextVisibility(update, updateLabel)
-        vAssert.checkTextColor(update, color_white)
+        vAssert.checkTextColor(update, colorWhite)
         vAction.clickButton(update)
     }
 

@@ -12,4 +12,4 @@ import org.junit.runners.Suite
     AddNotePageTest::class,
     EditNotePageTest::class
 )
-class TestSuite
+class TestSuite //Todo: Update tests for new components

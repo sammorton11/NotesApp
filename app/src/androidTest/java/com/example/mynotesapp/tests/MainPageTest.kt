@@ -7,7 +7,7 @@ import androidx.test.espresso.intent.Intents
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.rule.ActivityTestRule
 import com.example.mynotesapp.pages.MainPage
-import com.example.mynotesapp.presentation.activities.main.MainActivity
+import com.example.mynotesapp.presentation.activities.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
@@ -43,7 +43,6 @@ class MainPageTest : MainPage() {
 
     private fun add_note(){
         vAction.add_note(
-            addNoteButton = floatingActionButton,
             titleTextDestination = titleEdit,
             titleText = testTitleText,
             descriptionTextDestination = descriptionEdit,
@@ -99,6 +98,25 @@ class MainPageTest : MainPage() {
         vAssert.checkVisibility(deleteIconButton)
         vAssert.checkNoOverlaps(deleteIconButton)
         vAssert.checkIsClickable(deleteIconButton)
+    }
+
+    @Test
+    fun test_sorting_menu_button_visibility(){
+        vAssert.checkVisibility(expandSortingMenuButton)
+        vAssert.checkNoOverlaps(expandSortingMenuButton)
+        vAssert.checkTextColor(expandSortingMenuButton, colorLightGreen)
+        vAssert.checkIsClickable(expandSortingMenuButton)
+        vAssert.checkNoEllipsizedText(expandSortingMenuButton)
+        vAssert.checkNoOverlaps(expandSortingMenuButton)
+        vAssert.checkIsClickable(expandSortingMenuButton)
+    }
+
+    @Test
+    fun test_sorting_menu_button_actions(){
+        vAction.clickButton(expandSortingMenuButton)
+        // Todo: test radio group and radio buttons are visible after SM button click
+        // Todo: click the sorting menu button again
+        // Todo: assert that the radio group and radio buttons are not visible
     }
 
 }

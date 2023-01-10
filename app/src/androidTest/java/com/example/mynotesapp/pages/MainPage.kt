@@ -6,10 +6,8 @@ import com.example.mynotesapp.util.BasePage
 
 abstract class MainPage: BasePage() {
 
-    val mainPageName = "Notes"
-    val colorWhite = white
-    val timerIconButton = timerIcon
-    val title = idTVNote // note card title
-    val date = idTVDate // note card date
-    val descEdit = idEdtNoteDesc
+    protected val mainPageName = "Notes"
+    protected val title = idTVNote // note card title
+    protected val date = idTVDate // note card date
+    protected val descEdit = idEdtNoteDesc
 }

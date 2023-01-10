@@ -22,7 +22,7 @@ class NoteRepositoryImpl @Inject constructor(private val notesDao: NotesDao): No
         notesDao.delete(note)
     }
 
-    override suspend fun deleteAll(note: List<Note>) {
+    override suspend fun deleteAll() {
         notesDao.deleteAll()
     }
 }

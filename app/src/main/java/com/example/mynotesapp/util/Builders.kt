@@ -3,8 +3,8 @@ package com.example.mynotesapp.util
 import android.content.Context
 import android.provider.ContactsContract.CommonDataKinds.Note
 import androidx.appcompat.app.AlertDialog
-import com.example.mynotesapp.domain.adapters.NoteClick
-import com.example.mynotesapp.domain.adapters.NoteClickDelete
+import com.example.mynotesapp.presentation.adapters.NoteClick
+import com.example.mynotesapp.presentation.adapters.NoteClickDelete
 
 class Builders {
 
