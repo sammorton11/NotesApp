@@ -1,65 +1,78 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.mynotesapp.tests
 
 import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.intent.Intents
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.example.mynotesapp.R.id.*
+import androidx.test.rule.ActivityTestRule
 import com.example.mynotesapp.pages.MainPage
-import com.example.mynotesapp.presentation.screens.main.MainActivity
-import com.example.mynotesapp.util.Constants
+import com.example.mynotesapp.presentation.activities.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.Order
 
 @HiltAndroidTest
 class MainPageTest : MainPage() {
 
-    @get:Rule(order = 1)
+    @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
-    @get:Rule(order = 2)
+    @get:Rule(order = 1)
     val testRule = ActivityScenarioRule(MainActivity::class.java)
+    @get:Rule(order = 2)
+    val intentsRule = ActivityTestRule(MainActivity::class.java)
+
+    @Before
+    fun setUp() {
+        Intents.init()
+        add_note()
+    }
+
+    @After
+    fun tearDown() {
+        delete_note()
+        Intents.release()
+
+    }
 
     private val vAction = UIAction()
     private val vAssert = VisibilityView()
-    private val floatingActionButton = getFAB()
-    private val timerIconButton = getTimerIcon()
-    private val deleteIconButton = getDeleteIcon()
-    private val mainRecyclerView = getRecyclerView()
-    private val colorWhite = getWhiteTextColor()
-    private val title = getNoteTitle()
-    private val date = getNoteDateText()
-    private val titleEdit = idEdtNoteName
-    private val descEdit = idEdtNoteDesc
-    private val save = idBtn
+
+    private fun add_note(){
+        vAction.add_note(
+            titleTextDestination = titleEdit,
+            titleText = testTitleText,
+            descriptionTextDestination = descriptionEdit,
+            descriptionText = testDescriptionText,
+            saveButton = save
+        )
+    }
+
+    private fun delete_note(){
+        vAction.delete_note(mainRecyclerView, deleteIconButton, firstPosition)
+    }
 
     @Test
-    @Order(1)
-    fun test_FAB_visibility(){
+    fun test_FAB(){
         vAssert.checkNoEllipsizedText(floatingActionButton)
         vAssert.checkNoOverlaps(floatingActionButton)
         vAssert.checkIsClickable(floatingActionButton)
-    }
-    @Test
-    @Order(2)
-    fun add_note(){
         vAction.clickButton(floatingActionButton)
-        vAction.updateText(titleEdit, Constants.TestTitleText)
-        vAction.updateText(descEdit, Constants.TestDescriptionText)
-        vAction.clickButton(save)
+        pressBack()
     }
 
     @Test
-    @Order(3)
     fun test_note_title_visibility(){
-        vAssert.checkVisibilityAtPosition(title,0) // todo : this is broken
+        vAssert.checkTextVisibility(title, testTitleText)
         vAssert.checkTextColor(title, colorWhite)
         vAssert.checkNoOverlaps(title)
         vAssert.checkNoEllipsizedText(title)
     }
 
     @Test
-    @Order(4)
     fun test_date_visibility(){
         vAssert.checkVisibility(date)
         vAssert.checkTextColor(date, colorWhite)
@@ -68,7 +81,6 @@ class MainPageTest : MainPage() {
     }
 
     @Test
-    @Order(5)
     fun test_timer_button_visibility(){
         vAssert.checkVisibility(timerIconButton)
         vAssert.checkNoOverlaps(timerIconButton)
@@ -76,14 +88,12 @@ class MainPageTest : MainPage() {
     }
 
     @Test
-    @Order(6)
     fun test_click_timer_button_position(){
         vAction.clickItemAtPosition(mainRecyclerView, timerIconButton,0)
         pressBack()
     }
 
     @Test
-    @Order(7)
     fun test_delete_button_visibility(){
         vAssert.checkVisibility(deleteIconButton)
         vAssert.checkNoOverlaps(deleteIconButton)
@@ -91,10 +101,22 @@ class MainPageTest : MainPage() {
     }
 
     @Test
-    @Order(8)
-    fun delete_note(){
-        vAction.clickItemAtPosition(mainRecyclerView, deleteIconButton,0)
-        vAction.confirmDelete()
+    fun test_sorting_menu_button_visibility(){
+        vAssert.checkVisibility(expandSortingMenuButton)
+        vAssert.checkNoOverlaps(expandSortingMenuButton)
+        vAssert.checkTextColor(expandSortingMenuButton, colorLightGreen)
+        vAssert.checkIsClickable(expandSortingMenuButton)
+        vAssert.checkNoEllipsizedText(expandSortingMenuButton)
+        vAssert.checkNoOverlaps(expandSortingMenuButton)
+        vAssert.checkIsClickable(expandSortingMenuButton)
+    }
+
+    @Test
+    fun test_sorting_menu_button_actions(){
+        vAction.clickButton(expandSortingMenuButton)
+        // Todo: test radio group and radio buttons are visible after SM button click
+        // Todo: click the sorting menu button again
+        // Todo: assert that the radio group and radio buttons are not visible
     }
 
 }

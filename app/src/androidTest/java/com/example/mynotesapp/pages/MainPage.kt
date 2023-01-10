@@ -1,16 +1,13 @@
 package com.example.mynotesapp.pages
+
 import com.example.mynotesapp.R.color.white
 import com.example.mynotesapp.R.id.*
-import com.example.mynotesapp.util.BaseTest
+import com.example.mynotesapp.util.BasePage
 
-open class MainPage: BaseTest() {
+abstract class MainPage: BasePage() {
 
-    fun getRecyclerView() = notesRV
-    fun getFAB() = idFAB
-    fun getWhiteTextColor() = white
-    fun getTimerIcon() = timerIcon
-    fun getDeleteIcon() = idIVDelete
-    fun getNoteTitle() = idTVNote
-    fun getNoteDateText() = idTVDate
-
+    protected val mainPageName = "Notes"
+    protected val title = idTVNote // note card title
+    protected val date = idTVDate // note card date
+    protected val descEdit = idEdtNoteDesc
 }

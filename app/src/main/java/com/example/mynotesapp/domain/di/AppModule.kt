@@ -2,8 +2,9 @@ package com.example.mynotesapp.domain.di
 
 import android.app.Application
 import com.example.mynotesapp.data.database.NoteDatabase
-import com.example.mynotesapp.data.repository.NoteRepository
+import com.example.mynotesapp.domain.repository.NoteRepository
 import com.example.mynotesapp.data.dao.NotesDao
+import com.example.mynotesapp.data.repository.NoteRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +19,7 @@ class AppModule {
     @Singleton
     @Provides
     fun provideNoteRepository(noteDao: NotesDao): NoteRepository {
-        return NoteRepository(notesDao = noteDao)
+        return NoteRepositoryImpl(notesDao = noteDao)
     }
     @Singleton
     @Provides

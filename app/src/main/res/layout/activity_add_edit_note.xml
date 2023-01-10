@@ -1,77 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_shade_1"
-    tools:context=".presentation.screens.add_edit.AddEditNoteActivity">
+    android:gravity="bottom"
+    android:nestedScrollingEnabled="true"
+    android:orientation="vertical"
+    android:padding="25dp"
+    tools:context=".presentation.activities.AddEditNoteActivity">
 
 
-    <!--edit text for note title-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Title"
+        app:layout_constraintBottom_toTopOf="@+id/idEdtNoteName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/idEdtNoteName"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="55dp"
+        android:backgroundTint="@color/baby_blue"
         android:hint="@string/enter_note_title"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:padding="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.5" />
 
-    <!--edit text for note description-->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="315dp"
+        android:text="Description"
+        app:layout_constraintBottom_toTopOf="@+id/idEdtNoteDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idEdtNoteName"
+        app:layout_constraintVertical_bias="0.5" />
+
     <EditText
         android:id="@+id/idEdtNoteDesc"
+        style="@style/TextAppearance.Material3.BodyMedium"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/idBtn"
-        android:layout_below="@id/idEdtNoteName"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="250dp"
         android:autofillHints=""
-        android:background="@color/black_shade_1"
+        android:backgroundTint="@color/red_pink"
         android:gravity="start|top"
         android:hint="@string/enter_your_note_details"
         android:inputType="textMultiLine"
+        android:outlineProvider="background"
+        android:padding="7dp"
         android:singleLine="false"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        app:layout_constraintBottom_toTopOf="@+id/idBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.5" />
 
-    <!--button for saving and updating a note-->
     <Button
         android:id="@+id/idBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="72dp"
-        android:background="@color/black_shade_1"
+        android:layout_marginTop="50dp"
         android:text="Button"
         android:textAllCaps="false"
-        android:textColor="@color/white" />
+        app:layout_constraintBottom_toTopOf="@+id/idCancelButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idEdtNoteDesc"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/idCancelButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="12dp"
-        android:background="@color/black_shade_1"
+        android:layout_marginBottom="16dp"
         android:text="@string/cancel"
         android:textAllCaps="false"
-        android:textColor="@color/white" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idBtn"
+        app:layout_constraintVertical_bias="0.5" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

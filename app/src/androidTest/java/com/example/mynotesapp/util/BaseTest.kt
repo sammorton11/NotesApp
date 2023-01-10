@@ -1,44 +1,71 @@
 package com.example.mynotesapp.util
 
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.NoMatchingViewException
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
-import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.LayoutAssertions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.mynotesapp.R
+import com.example.mynotesapp.presentation.activities.AddEditNoteActivity
+import com.example.mynotesapp.presentation.activities.MainActivity
 import org.hamcrest.Matcher
 
 
 abstract class BaseTest {
 
-
-    class UIAction {
+    // UI Action Methods
+    open class UIAction {
 
         private fun clickItemAtPosition(resourceId: Int) = object : ViewAction {
+
             override fun getConstraints(): Matcher<View>? {
                 return null
             }
-
             override fun getDescription(): String {
                 return "Click on item at position in the RecyclerView"
             }
-
             override fun perform(uiController: UiController?, view: View?) {
                 return click().perform(uiController, view?.findViewById(resourceId))
             }
+
+        }
+
+        private fun confirmDelete() {
+            onView(withText("Delete"))
+                .inRoot(isDialog()).perform(click())
+        }
+
+        fun add_note(
+            addNoteButton: Int,
+            titleTextDestination: Int,
+            titleText: String,
+            descriptionTextDestination: Int,
+            descriptionText: String,
+            saveButton: Int
+
+        ){
+            clickButton(addNoteButton)
+            updateText(titleTextDestination, titleText)
+            updateText(descriptionTextDestination, descriptionText)
+            clickButton(saveButton)
+        }
+
+        fun delete_note(recyclerView: Int, deleteButton: Int, position: Int){
+            clickItemAtPosition(recyclerView, deleteButton,position)
+            confirmDelete()
         }
 
         fun clickItemAtPosition(recyclerView: Int, resourceId: Int, position: Int){
@@ -77,44 +104,14 @@ abstract class BaseTest {
                 .perform(clearText())
         }
 
-        fun confirmDelete() {
-            onView(withText("Delete"))
-                .inRoot(isDialog()).perform(click())
-        }
+
     }
 
-
+    // Visibility Methods
     class VisibilityView{
 
-
-
-        private fun checkItemAtPosition(resourceId: Int) = object : ViewAssertion {
-            override fun check(view: View?, noViewFoundException: NoMatchingViewException?) {
-                TODO("Not yet implemented")
-            }
-
-        }
-
-
-
-        // Visibility Tests
-        fun checkVisibilityAtPosition(resourceId: Int, position: Int){
-            onData(withId(resourceId))
-                .atPosition(position)
-                .check(matches(isDisplayed()))
-        }
-
-        fun checkTextVisibilityAtPosition(resourceId: Int, text: String, position: Int){
-//            onView(withId(resourceId))
-//                .perform(
-//                    actionOnItemAtPosition<RecyclerView.ViewHolder>
-//                        (position, scrollTo())
-//                )
-//                .check(matches(withText(text)))
-
-            onData(withId(resourceId))
-                .atPosition(position)
-                .check(matches(withText(text)))
+        fun isOnMainPage(){
+            intended(hasComponent(MainActivity::class.java.name))
         }
 
         fun checkVisibility(resourceId: Int){
@@ -125,11 +122,6 @@ abstract class BaseTest {
         fun checkTextVisibility(resourceId: Int, text: String){
             onView(withId(resourceId))
                 .check(matches(withText(text)))
-        }
-
-        fun checkTextColorWhite(){
-            onView(withId(R.color.white))
-                .check(matches(isDisplayed()))
         }
 
         fun checkNoOverlaps(resourceId: Int){
@@ -181,30 +173,36 @@ abstract class BaseTest {
             }
         }
 
-        fun checkTextColor(colorResId: Int): BoundedMatcher<View?, TextView> {
-            return object : BoundedMatcher<View?, TextView>(TextView::class.java){
-                override fun matchesSafely(textView: TextView): Boolean {
-                    val textViewColor = textView.currentTextColor
-                    val expectedColor: Int = InstrumentationRegistry.getInstrumentation()
-                        .targetContext
-                        .getColor(colorResId)
+        fun checkListItem(){
+            onView(withId(R.id.notesRV))
+                .check(matches(hasMinimumChildCount(1)))
+        }
 
-                    return textViewColor == expectedColor
-                }
+        fun isOnEditNotePage(){
+            intended(
+                hasComponent(AddEditNoteActivity::class.java.name),
+            )
+            intended(hasExtra("noteType", "Edit"))
+        }
 
-                override fun describeTo(description: org.hamcrest.Description?) {
-                    var colorId = colorResId.toString()
-                    if (InstrumentationRegistry.getInstrumentation().targetContext != null) {
-                        colorId = InstrumentationRegistry.getInstrumentation()
-                            .targetContext
-                            .resources
-                            .getResourceName(colorResId)
-                    }
-                    description?.appendText("has color with ID $colorId")
-                    Log.d("COLOR ID","has color with ID $colorId")
-                }
-            }
+        fun isOnAddNotePage(){
+            intended(hasComponent(AddEditNoteActivity::class.java.name))
+        }
+
+        fun checkVisibilityAtPosition(resourceId: Int, position: Int){
+            onData(withId(resourceId))
+                .atPosition(position)
+                .check(matches(isDisplayed()))
+        }
+
+        fun checkTextVisibilityAtPosition(resourceId: Int, text: String, position: Int){
+
+            onView(withId(resourceId))
+                .perform(
+                    actionOnItemAtPosition<RecyclerView.ViewHolder>
+                        (position, scrollTo())
+                )
+                .check(matches(withText(text)))
         }
     }
-
 }

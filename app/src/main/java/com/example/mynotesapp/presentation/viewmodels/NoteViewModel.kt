@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mynotesapp.data.entities.Note
-import com.example.mynotesapp.data.repository.NoteRepository
+import com.example.mynotesapp.data.repository.NoteRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NoteViewModel
-@Inject constructor(private val noteRepository: NoteRepository) : ViewModel() {
+@Inject constructor(private val noteRepository: NoteRepositoryImpl) : ViewModel() {
 
     val allNotes: LiveData<List<Note>> = noteRepository.allNotes
 
@@ -28,6 +28,8 @@ class NoteViewModel
         noteRepository.insert(note)
     }
 
-
+    fun deleteAll() = viewModelScope.launch(Dispatchers.IO) {
+        noteRepository.deleteAll()
+    }
 }
 

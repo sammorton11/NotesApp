@@ -1,7 +1,8 @@
-package com.example.mynotesapp.presentation.screens.add_edit
+package com.example.mynotesapp.presentation.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
@@ -12,7 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mynotesapp.R
 import com.example.mynotesapp.data.entities.Note
-import com.example.mynotesapp.presentation.screens.main.MainActivity
+import com.example.mynotesapp.databinding.ActivityAddEditNoteBinding
 import com.example.mynotesapp.presentation.viewmodels.NoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -22,6 +23,7 @@ import java.util.*
 @AndroidEntryPoint
 class AddEditNoteActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityAddEditNoteBinding
     private lateinit var noteTitleEdt: EditText
     private lateinit var noteEdt: EditText
     private lateinit var saveBtn: Button
@@ -30,10 +32,12 @@ class AddEditNoteActivity : AppCompatActivity() {
     private val noteType by lazy { intent.getStringExtra("noteType") }
     private val viewModel: NoteViewModel by viewModels()
 
-    @RequiresApi(Build.VERSION_CODES.N)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_edit_note)
+        binding = ActivityAddEditNoteBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         setupUI()
 
         saveBtn.setOnClickListener {
@@ -45,14 +49,12 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun setupUI(){
 
-        noteTitleEdt = findViewById(R.id.idEdtNoteName) // edit text for the title
-        noteEdt = findViewById(R.id.idEdtNoteDesc) // edit text for the note description
-        saveBtn = findViewById(R.id.idBtn) // save button
-        cancelButton = findViewById(R.id.idCancelButton)
+        noteTitleEdt = binding.idEdtNoteName // edit text for the title
+        noteEdt = binding.idEdtNoteDesc // edit text for the note description
+        saveBtn = binding.idBtn // save button
+        cancelButton = binding.idCancelButton
 
         if (noteType.equals("Edit")) {
             // setting data to the edit text view
@@ -70,10 +72,8 @@ class AddEditNoteActivity : AppCompatActivity() {
         }
     }
 
-
-
     //Update UI
-    @RequiresApi(Build.VERSION_CODES.N)
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun saveData(){
 
         val noteTitle = noteTitleEdt.text.toString()
@@ -85,7 +85,8 @@ class AddEditNoteActivity : AppCompatActivity() {
                 val updatedNote = Note(noteTitle, noteDescription, getDateTime())
                 updatedNote.id = noteID
                 viewModel.updateNote(updatedNote)
-                Toast.makeText(this, "Note Updated: $noteTitle", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Note Updated: $noteTitle",
+                    Toast.LENGTH_LONG).show()
             }
 
             //Add new note
@@ -96,7 +97,9 @@ class AddEditNoteActivity : AppCompatActivity() {
                 viewModel.addNote(Note(noteTitle, noteDescription, getDateTime()))
                 Toast.makeText(this, "$noteTitle Added", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Nothing added - Please add a title and description", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this, "Nothing added - Please add a title and description",
+                    Toast.LENGTH_LONG).show()
             }
         }
 
@@ -105,13 +108,16 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SimpleDateFormat")
     private fun getDateTime(): String {
         val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
         return sdf.format(Date())
+
     }
 
     private fun goBackToMainPage(){
+        intent.putExtra("noteColor", Color.WHITE)
         startActivity(Intent(applicationContext, MainActivity::class.java))
         this.finish()
     }
